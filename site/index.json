@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-10-10T22:11:00+08:00",
+  "marketplaceVersion": "1.0.0",
+  "modules": [
+    {
+      "id": "examRegistration",
+      "name": "Exam Registration",
+      "description": "Student exam registration and timetable management module.",
+      "version": "1.0.0",
+      "latestVersion": "1.0.0",
+      "minHostVersion": "0.396",
+      "repoUrl": "https://github.com/takan003/examRegistration",
+      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/examRegistration.zip",
+      "checksumSha256": "631742449B1E697E948C937CBF43740907616A7C67C793C5A045809450D5C11D",
+      "category": "academics",
+      "tags": ["exam", "registration", "student"]
+    }
+  ]
+}
