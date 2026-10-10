@@ -351,34 +351,34 @@
           <div class="brand-mark">C</div>
           <div class="brand-name">campus-toolkit</div>
         </div>
-        <div class="pill">marketplace</div>
+        <div class="pill">功能模組市集</div>
       </div>
 
       <section class="hero">
         <div class="hero-top">
           <div>
-            <h1>campus-toolkit marketplace</h1>
-            <p class="subtitle">Independent module catalog for the host app</p>
+            <h1>數位校園工具箱</h1>
+            <p class="subtitle">功能模組市集 · 讓學校與系統擴充更輕鬆</p>
           </div>
         </div>
 
         <div class="stats">
-          <div class="stat"><strong id="module-count">0</strong><span>modules</span></div>
-          <div class="stat"><strong id="host-version">0.396</strong><span>min host</span></div>
-          <div class="stat"><strong id="catalog-state">live</strong><span>catalog status</span></div>
+          <div class="stat"><strong id="module-count">0</strong><span>模組數</span></div>
+          <div class="stat"><strong id="host-version">0.396</strong><span>最低版本</span></div>
+          <div class="stat"><strong id="catalog-state">正常</strong><span>市集狀態</span></div>
         </div>
       </section>
 
       <div class="toolbar">
         <div class="search">
           <span>🔎</span>
-          <input id="searchInput" type="text" placeholder="Search modules and tags" aria-label="Search modules" />
+          <input id="searchInput" type="text" placeholder="搜尋模組、標籤或描述" aria-label="Search modules" />
         </div>
 
         <div class="filters">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="academics">Academics</button>
-          <button class="filter-btn" data-filter="admin">Admin</button>
+          <button class="filter-btn active" data-filter="all">全部</button>
+          <button class="filter-btn" data-filter="academics">學務/教務</button>
+          <button class="filter-btn" data-filter="admin">管理</button>
         </div>
       </div>
 
@@ -426,8 +426,8 @@
 
         app.innerHTML = `<div class="grid">${filtered.map((module) => {
           const tags = (module.tags || []).slice(0, 3).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
-          const repoLink = module.repoUrl ? `<a class="btn secondary" href="${escapeHtml(module.repoUrl)}" target="_blank" rel="noreferrer">Repository</a>` : '';
-          const downloadLink = module.downloadUrl ? `<a class="btn primary" href="${escapeHtml(module.downloadUrl)}" target="_blank" rel="noreferrer">Download</a>` : '';
+          const repoLink = module.repoUrl ? `<a class="btn secondary" href="${escapeHtml(module.repoUrl)}" target="_blank" rel="noreferrer">查看原始碼</a>` : '';
+          const downloadLink = module.downloadUrl ? `<a class="btn primary" href="${escapeHtml(module.downloadUrl)}" target="_blank" rel="noreferrer">立即安裝</a>` : '';
           const category = module.category ? escapeHtml(module.category) : 'general';
           const hostVersion = module.minHostVersion ? escapeHtml(module.minHostVersion) : 'any';
 
@@ -438,14 +438,14 @@
                 <div class="version">v${escapeHtml(module.version || '0.0.0')}</div>
               </div>
 
-              <h3>${escapeHtml(module.name || module.id || 'Module')}</h3>
+              <h3>${escapeHtml(module.name || module.id || '模組')}</h3>
 
               <div class="meta">
                 <span>📦 ${category}</span>
-                <span>🧩 ${hostVersion}</span>
+                <span>🧩 需求版本 ${hostVersion}</span>
               </div>
 
-              <p class="description">${escapeHtml(module.description || 'No description provided.')}</p>
+              <p class="description">${escapeHtml(module.description || '尚未提供模組說明。')}</p>
 
               <div class="tags">${tags}</div>
 
