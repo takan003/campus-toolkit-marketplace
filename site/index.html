@@ -1,31 +1,30 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>campus-toolkit marketplace</title>
+    <title>campus-toolkit 功能模組市集</title>
     <style>
       :root {
-        --bg: #f4f7fb;
-        --panel: #ffffff;
-        --line: #dfe7f3;
-        --text: #1e293b;
-        --muted: #64748b;
-        --primary: #2563eb;
-        --primary-soft: #eaf2ff;
-        --primary-strong: #1d4ed8;
-        --success: #0f766e;
-        --warning: #b45309;
-        --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+        --bg: #efeff4;
+        --panel: #f8f8fb;
+        --surface: #ffffff;
+        --line: #dfe3ec;
+        --text: #1d2736;
+        --muted: #6d7788;
+        --primary: #2a6ee3;
+        --primary-soft: #edf3ff;
+        --success-bg: #eaf7ee;
+        --success-text: #1d8a5d;
+        --shadow: 0 12px 30px rgba(18, 30, 52, 0.06);
       }
 
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
       body {
         margin: 0;
-        background: linear-gradient(180deg, #eef3ff 0%, var(--bg) 120px, var(--bg) 100%);
+        background: var(--bg);
         color: var(--text);
-        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        font-family: "Segoe UI", "Microsoft JhengHei", ui-sans-serif, sans-serif;
       }
 
       a { color: inherit; }
@@ -33,80 +32,80 @@
       .page {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 32px 20px 72px;
+        padding: 0 0 80px;
       }
 
       .topbar {
+        height: 76px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 26px;
+        padding: 0 20px;
+        background: rgba(255,255,255,0.78);
+        border-bottom: 1px solid rgba(141, 151, 170, 0.3);
+        backdrop-filter: blur(8px);
       }
 
       .brand {
         display: flex;
         align-items: center;
         gap: 12px;
+        font-weight: 700;
       }
 
       .brand-mark {
-        width: 32px;
-        height: 32px;
-        border-radius: 10px;
-        background: linear-gradient(135deg, #ffb703, #f97316);
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #ffb347, #f97316);
         display: grid;
         place-items: center;
         color: #fff;
         font-size: 0.82rem;
         font-weight: 800;
-        box-shadow: 0 8px 20px rgba(249, 115, 22, 0.25);
       }
 
       .brand-name {
-        font-size: 1.2rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
+        font-size: 1.08rem;
       }
 
       .pill {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        padding: 9px 14px;
+        justify-content: center;
+        height: 34px;
+        padding: 0 14px;
         border-radius: 999px;
-        background: rgba(37, 99, 235, 0.08);
+        background: #edf3ff;
         color: var(--primary);
-        border: 1px solid rgba(37, 99, 235, 0.18);
-        font-size: 0.8rem;
+        border: 1px solid rgba(42, 110, 227, 0.18);
+        font-size: 0.82rem;
         font-weight: 700;
       }
 
-      .hero {
-        background: rgba(255, 255, 255, 0.7);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        box-shadow: var(--shadow);
-        padding: 26px 24px;
-        margin-bottom: 22px;
+      .container {
+        width: min(1200px, calc(100% - 40px));
+        margin: 0 auto;
       }
 
-      .hero-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        flex-wrap: wrap;
+      .hero {
+        margin-top: 32px;
+        padding: 28px 30px 18px;
+        background: rgba(255,255,255,0.5);
+        border: 1px solid rgba(135, 147, 167, 0.24);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
       }
 
       h1 {
         margin: 0;
-        font-size: clamp(2.1rem, 3vw, 3.2rem);
-        letter-spacing: -0.05em;
+        font-size: clamp(2.4rem, 4vw, 3.2rem);
+        line-height: 1.2;
+        letter-spacing: -0.06em;
       }
 
       .subtitle {
-        margin: 8px 0 0;
+        margin: 10px 0 0;
         color: var(--muted);
         font-size: 1.05rem;
       }
@@ -115,157 +114,170 @@
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-top: 18px;
+        margin-top: 20px;
       }
 
       .stat {
-        padding: 10px 12px;
-        border-radius: 12px;
-        background: #f8faff;
+        min-width: 160px;
+        flex: 1 1 160px;
+        padding: 14px 16px 12px;
+        background: rgba(255,255,255,0.35);
         border: 1px solid var(--line);
-        min-width: 125px;
+        border-radius: 12px;
       }
 
       .stat strong {
         display: block;
-        font-size: 1.25rem;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
       }
 
       .stat span {
+        display: inline-block;
         color: var(--muted);
         font-size: 0.8rem;
+      }
+
+      .badge-live {
+        display: inline-block;
+        margin-top: 4px;
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: #eaf7ee;
+        color: var(--success-text);
       }
 
       .toolbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin: 20px 0 24px;
+        gap: 18px;
+        margin: 18px 0 20px;
+        padding: 10px 12px;
+        background: rgba(255,255,255,0.35);
+        border: 1px solid var(--line);
+        border-radius: 14px;
       }
 
       .search {
         flex: 1;
-        min-width: 240px;
         display: flex;
         align-items: center;
         gap: 10px;
-        background: rgba(255,255,255,0.8);
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 12px 14px;
+        min-width: 220px;
       }
 
       .search input {
-        flex: 1;
+        width: 100%;
         border: none;
         background: transparent;
-        font-size: 0.98rem;
         color: var(--text);
+        font-size: 0.95rem;
         outline: none;
+      }
+
+      .search input::placeholder {
+        color: var(--muted);
       }
 
       .filters {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+        margin-left: 8px;
       }
 
       .filter-btn {
-        border: 1px solid var(--line);
-        background: #fff;
+        border: 1px solid transparent;
+        background: transparent;
         color: var(--muted);
-        padding: 10px 12px;
         border-radius: 10px;
-        font-weight: 600;
+        height: 36px;
+        padding: 0 14px;
+        font-weight: 700;
         cursor: pointer;
       }
 
       .filter-btn.active {
         background: var(--primary-soft);
-        color: var(--primary-strong);
-        border-color: rgba(37, 99, 235, 0.2);
+        color: var(--primary);
+        border-color: rgba(42, 110, 227, 0.18);
       }
 
-      .grid {
+      .card-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
+        grid-template-columns: 1fr;
+        gap: 18px;
       }
 
-      .card {
-        background: rgba(255,255,255,0.9);
+      .module-card {
+        background: rgba(255,255,255,0.55);
         border: 1px solid var(--line);
         border-radius: 18px;
-        padding: 18px 18px 16px;
-        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        padding: 18px 18px 15px;
+        box-shadow: var(--shadow);
       }
 
-      .card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
-      }
-
-      .card-head {
+      .module-head {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        align-items: flex-start;
         gap: 12px;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
       }
 
-      .icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
+      .module-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
         display: grid;
         place-items: center;
-        font-weight: 800;
-        background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(59,130,246,0.25));
-        color: var(--primary-strong);
+        font-weight: 700;
+        background: linear-gradient(135deg, #cdf0ff, #dfe9ff);
+        color: #2f5fe1;
       }
 
-      .version {
+      .module-version {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-width: 68px;
-        padding: 6px 9px;
-        background: #eef7ee;
-        color: var(--success);
+        padding: 4px 10px;
         border-radius: 999px;
+        background: var(--success-bg);
+        color: var(--success-text);
         font-size: 0.72rem;
         font-weight: 700;
       }
 
-      .card h3 {
+      .module-title {
+        font-size: clamp(1.3rem, 2vw, 2rem);
         margin: 0;
-        font-size: 1.18rem;
-        letter-spacing: -0.02em;
+        line-height: 1.3;
+        letter-spacing: -0.04em;
       }
 
-      .meta {
+      .meta-row {
         margin-top: 8px;
-        color: var(--muted);
-        font-size: 0.8rem;
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+        color: var(--muted);
+        font-size: 0.82rem;
       }
 
-      .meta span {
+      .meta-row span {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
+        gap: 6px;
       }
 
       .description {
-        margin: 14px 0 16px;
-        color: var(--text);
-        line-height: 1.6;
-        min-height: 68px;
+        margin: 16px 0 14px;
+        color: #2d3748;
+        line-height: 1.7;
+        font-size: 1rem;
       }
 
       .tags {
@@ -276,29 +288,31 @@
       }
 
       .tag {
-        background: #f1f5f9;
-        color: #475569;
-        border: 1px solid #e2e8f0;
+        background: #f3f5f9;
+        border: 1px solid #e2e7ef;
+        color: #536178;
         border-radius: 999px;
-        padding: 6px 9px;
+        padding: 5px 10px;
         font-size: 0.72rem;
         font-weight: 700;
       }
 
       .actions {
         display: flex;
-        gap: 10px;
         flex-wrap: wrap;
+        gap: 12px;
       }
 
       .btn {
+        text-decoration: none;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        text-decoration: none;
+        min-width: 126px;
+        height: 44px;
+        padding: 0 18px;
+        border-radius: 12px;
         border: 1px solid transparent;
-        border-radius: 10px;
-        padding: 10px 14px;
         font-weight: 700;
         cursor: pointer;
       }
@@ -306,40 +320,34 @@
       .btn.primary {
         background: var(--primary);
         color: #fff;
-        box-shadow: 0 8px 18px rgba(37,99,235,0.22);
+        box-shadow: 0 10px 20px rgba(42, 110, 227, 0.20);
       }
 
       .btn.secondary {
         background: #fff;
-        border-color: var(--line);
         color: var(--text);
+        border-color: var(--line);
       }
 
-      .status-box {
-        margin-top: 18px;
-        padding: 12px 14px;
-        background: #f8fafc;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        color: var(--muted);
-      }
-
+      .status-box,
       .empty {
-        background: rgba(255,255,255,0.8);
+        margin-top: 18px;
+        background: rgba(255,255,255,0.55);
         border: 1px solid var(--line);
         border-radius: 16px;
-        padding: 24px;
+        padding: 18px 20px;
         color: var(--muted);
-        box-shadow: var(--shadow);
       }
 
-      @media (max-width: 640px) {
-        .topbar, .hero-top, .toolbar {
-          align-items: flex-start;
+      @media (max-width: 700px) {
+        .toolbar {
+          flex-direction: column;
+          align-items: stretch;
         }
 
-        .hero {
-          padding: 20px 18px;
+        .filters {
+          margin-left: 0;
+          justify-content: flex-start;
         }
       }
     </style>
@@ -354,35 +362,42 @@
         <div class="pill">功能模組市集</div>
       </div>
 
-      <section class="hero">
-        <div class="hero-top">
-          <div>
-            <h1>數位校園工具箱</h1>
-            <p class="subtitle">功能模組市集 · 讓學校與系統擴充更輕鬆</p>
+      <div class="container">
+        <section class="hero">
+          <h1>數位校園工具箱</h1>
+          <p class="subtitle">功能模組市集 · 擴充校園系統能力，讓管理與教務更輕鬆</p>
+
+          <div class="stats">
+            <div class="stat">
+              <strong id="module-count">0</strong>
+              <span>模組數</span>
+            </div>
+            <div class="stat">
+              <strong id="host-version">0.396</strong>
+              <span>最低版本</span>
+            </div>
+            <div class="stat">
+              <strong><span class="badge-live" id="catalog-state">live</span></strong>
+              <span>市集狀態</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="toolbar">
+          <div class="search">
+            <span>🔎</span>
+            <input id="searchInput" type="text" placeholder="搜尋模組、標籤或描述" aria-label="搜尋模組" />
+          </div>
+
+          <div class="filters">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="academics">學務/教務</button>
+            <button class="filter-btn" data-filter="admin">管理</button>
           </div>
         </div>
 
-        <div class="stats">
-          <div class="stat"><strong id="module-count">0</strong><span>模組數</span></div>
-          <div class="stat"><strong id="host-version">0.396</strong><span>最低版本</span></div>
-          <div class="stat"><strong id="catalog-state">正常</strong><span>市集狀態</span></div>
-        </div>
-      </section>
-
-      <div class="toolbar">
-        <div class="search">
-          <span>🔎</span>
-          <input id="searchInput" type="text" placeholder="搜尋模組、標籤或描述" aria-label="Search modules" />
-        </div>
-
-        <div class="filters">
-          <button class="filter-btn active" data-filter="all">全部</button>
-          <button class="filter-btn" data-filter="academics">學務/教務</button>
-          <button class="filter-btn" data-filter="admin">管理</button>
-        </div>
+        <div id="app"></div>
       </div>
-
-      <div id="app"></div>
     </div>
 
     <script>
@@ -391,7 +406,7 @@
 
       async function loadModules() {
         const app = document.getElementById('app');
-        app.innerHTML = '<div class="status-box">Loading module catalog…</div>';
+        app.innerHTML = '<div class="status-box">載入模組市集中…</div>';
 
         try {
           const response = await fetch(MARKET_INDEX_URL, { cache: 'no-store' });
@@ -403,7 +418,7 @@
           document.getElementById('catalog-state').textContent = 'live';
         } catch (error) {
           document.getElementById('catalog-state').textContent = 'offline';
-          app.innerHTML = '<div class="empty">Marketplace index is unavailable right now.</div>';
+          app.innerHTML = '<div class="empty">模組市集目前暫時無法載入。</div>';
         }
       }
 
@@ -413,39 +428,40 @@
         const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
 
         const filtered = moduleData.filter((module) => {
-          const inCategory = activeFilter === 'all' || (module.category || '').toLowerCase() === activeFilter;
+          const category = (module.category || '').toLowerCase();
+          const inCategory = activeFilter === 'all' || category === activeFilter;
           const searchable = [module.name, module.description, module.id, ...(module.tags || [])].join(' ').toLowerCase();
           const inSearch = !searchTerm || searchable.includes(searchTerm);
           return inCategory && inSearch;
         });
 
         if (!filtered.length) {
-          app.innerHTML = '<div class="empty">No matching modules were found.</div>';
+          app.innerHTML = '<div class="empty">沒有符合條件的模組。</div>';
           return;
         }
 
-        app.innerHTML = `<div class="grid">${filtered.map((module) => {
+        app.innerHTML = `<div class="card-list">${filtered.map((module) => {
           const tags = (module.tags || []).slice(0, 3).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
           const repoLink = module.repoUrl ? `<a class="btn secondary" href="${escapeHtml(module.repoUrl)}" target="_blank" rel="noreferrer">查看原始碼</a>` : '';
           const downloadLink = module.downloadUrl ? `<a class="btn primary" href="${escapeHtml(module.downloadUrl)}" target="_blank" rel="noreferrer">立即安裝</a>` : '';
           const category = module.category ? escapeHtml(module.category) : 'general';
-          const hostVersion = module.minHostVersion ? escapeHtml(module.minHostVersion) : 'any';
+          const hostVersion = module.minHostVersion ? escapeHtml(module.minHostVersion) : '任意';
 
           return `
-            <article class="card">
-              <div class="card-head">
-                <div class="icon">${escapeHtml((module.name || module.id || 'M').slice(0, 1).toUpperCase())}</div>
-                <div class="version">v${escapeHtml(module.version || '0.0.0')}</div>
+            <article class="module-card">
+              <div class="module-head">
+                <div class="module-icon">${escapeHtml((module.name || module.id || 'M').slice(0,1).toUpperCase())}</div>
+                <div class="module-version">v${escapeHtml(module.version || '0.0.0')}</div>
               </div>
 
-              <h3>${escapeHtml(module.name || module.id || '模組')}</h3>
+              <h2 class="module-title">${escapeHtml(module.name || module.id || '模組')}</h2>
 
-              <div class="meta">
+              <div class="meta-row">
                 <span>📦 ${category}</span>
                 <span>🧩 需求版本 ${hostVersion}</span>
               </div>
 
-              <p class="description">${escapeHtml(module.description || '尚未提供模組說明。')}</p>
+              <p class="description">${escapeHtml(module.description || '暫無模組說明。')}</p>
 
               <div class="tags">${tags}</div>
 
