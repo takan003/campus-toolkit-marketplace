@@ -419,12 +419,31 @@
         student: '學生',
       };
 
+      const MODULE_DISPLAY = {
+        examRegistration: {
+          name: '升學考試與模擬考校內報名',
+          description: '協助學生完成升學考試與模擬考校內報名流程，含報名資訊、時間表與狀態管理。',
+        },
+      };
+
       function toDisplayCategory(category) {
         return CATEGORY_LABELS[category] || '一般';
       }
 
       function toDisplayTags(tags) {
         return (tags || []).slice(0, 3).map((tag) => TAG_LABELS[tag] || tag);
+      }
+
+      function toDisplayModuleName(module) {
+        const id = module?.id || '';
+        if (MODULE_DISPLAY[id]) return MODULE_DISPLAY[id].name;
+        return module?.name || '模組';
+      }
+
+      function toDisplayModuleDescription(module) {
+        const id = module?.id || '';
+        if (MODULE_DISPLAY[id]) return MODULE_DISPLAY[id].description;
+        return module?.description || '暫無模組說明。';
       }
 
       async function loadModules() {
@@ -470,21 +489,24 @@
           const category = module.category ? escapeHtml(toDisplayCategory(module.category.toLowerCase())) : '一般';
           const hostVersion = module.minHostVersion ? escapeHtml(module.minHostVersion) : '任意';
 
+          const displayName = toDisplayModuleName(module);
+          const displayDescription = toDisplayModuleDescription(module);
+
           return `
             <article class="module-card">
               <div class="module-head">
-                <div class="module-icon">${escapeHtml((module.name || module.id || 'M').slice(0,1).toUpperCase())}</div>
+                <div class="module-icon">${escapeHtml((displayName || module.id || 'M').slice(0,1).toUpperCase())}</div>
                 <div class="module-version">版本 ${escapeHtml(module.version || '0.0.0')}</div>
               </div>
 
-              <h2 class="module-title">${escapeHtml(module.name || module.id || '模組')}</h2>
+              <h2 class="module-title">${escapeHtml(displayName)}</h2>
 
               <div class="meta-row">
                 <span>📦 ${category}</span>
                 <span>🧩 需求版本 ${hostVersion}</span>
               </div>
 
-              <p class="description">${escapeHtml(module.description || '暫無模組說明。')}</p>
+              <p class="description">${escapeHtml(displayDescription)}</p>
 
               <div class="tags">${tags}</div>
 
