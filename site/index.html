@@ -404,6 +404,26 @@
       const MARKET_INDEX_URL = './index.json';
       let moduleData = [];
 
+      const CATEGORY_LABELS = {
+        academics: '學務/教務',
+        admin: '管理',
+        general: '一般',
+      };
+
+      const TAG_LABELS = {
+        exam: '考試',
+        registration: '報名',
+        student: '學生',
+      };
+
+      function toDisplayCategory(category) {
+        return CATEGORY_LABELS[category] || '一般';
+      }
+
+      function toDisplayTags(tags) {
+        return (tags || []).slice(0, 3).map((tag) => TAG_LABELS[tag] || tag);
+      }
+
       async function loadModules() {
         const app = document.getElementById('app');
         app.innerHTML = '<div class="status-box">載入模組市集中…</div>';
@@ -415,9 +435,9 @@
           moduleData = Array.isArray(data.modules) ? data.modules : [];
           renderModules();
           document.getElementById('module-count').textContent = String(moduleData.length);
-          document.getElementById('catalog-state').textContent = 'live';
+          document.getElementById('catalog-state').textContent = '正常';
         } catch (error) {
-          document.getElementById('catalog-state').textContent = 'offline';
+          document.getElementById('catalog-state').textContent = '離線';
           app.innerHTML = '<div class="empty">模組市集目前暫時無法載入。</div>';
         }
       }
@@ -441,10 +461,10 @@
         }
 
         app.innerHTML = `<div class="card-list">${filtered.map((module) => {
-          const tags = (module.tags || []).slice(0, 3).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
+          const tags = toDisplayTags(module.tags).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
           const repoLink = module.repoUrl ? `<a class="btn secondary" href="${escapeHtml(module.repoUrl)}" target="_blank" rel="noreferrer">查看原始碼</a>` : '';
           const downloadLink = module.downloadUrl ? `<a class="btn primary" href="${escapeHtml(module.downloadUrl)}" target="_blank" rel="noreferrer">立即安裝</a>` : '';
-          const category = module.category ? escapeHtml(module.category) : 'general';
+          const category = module.category ? escapeHtml(toDisplayCategory(module.category.toLowerCase())) : '一般';
           const hostVersion = module.minHostVersion ? escapeHtml(module.minHostVersion) : '任意';
 
           return `
