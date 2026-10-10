@@ -1,0 +1,31 @@
+{
+  "value": "examRegistration",
+  "label": "Exam Registration",
+  "kind": "optional",
+  "status": "live",
+  "description": "Student exam registration and timetable management module.",
+  "href": "/student/exam-registration",
+  "roleHrefs": {
+    "student": "/student/exam-registration",
+    "staff": "/admin/exam-registration",
+    "admin": "/admin/exam-registration"
+  },
+  "author": {
+    "author": "takan003",
+    "authorUrl": "https://github.com/takan003",
+    "version": "1.0.0",
+    "releasedAt": "2026-10-10 22:05"
+  },
+  "provides": {
+    "student": true,
+    "parent": false,
+    "staff": true,
+    "admin": true
+  },
+  "routes": [
+    "/student/exam-registration",
+    "/admin/exam-registration"
+  ],
+  "contractVersion": 1,
+  "minHostVersion": "0.396"
+}
