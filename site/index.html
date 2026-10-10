@@ -380,7 +380,7 @@
               <span>最低版本</span>
             </div>
             <div class="stat">
-              <strong><span class="badge-live" id="catalog-state">live</span></strong>
+              <strong><span class="badge-live" id="catalog-state">正常</span></strong>
               <span>市集狀態</span>
             </div>
           </div>
@@ -404,7 +404,7 @@
     </div>
 
     <script>
-      const MARKET_INDEX_URL = './index.json?v=' + Date.now();
+      const MARKET_INDEX_URL = './index.json?ts=' + Date.now();
       let moduleData = [];
 
       const CATEGORY_LABELS = {
@@ -474,7 +474,7 @@
             <article class="module-card">
               <div class="module-head">
                 <div class="module-icon">${escapeHtml((module.name || module.id || 'M').slice(0,1).toUpperCase())}</div>
-                <div class="module-version">v${escapeHtml(module.version || '0.0.0')}</div>
+                <div class="module-version">版本 ${escapeHtml(module.version || '0.0.0')}</div>
               </div>
 
               <h2 class="module-title">${escapeHtml(module.name || module.id || '模組')}</h2>
