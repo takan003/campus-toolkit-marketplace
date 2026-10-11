@@ -134,6 +134,20 @@ function resolveRepoReleaseFile(downloadUrl) {
   return path.join(ROOT, "releases", url.pathname.slice(expectedPrefix.length));
 }
 
+function hasRequiredDirectory(entries, requiredDir) {
+  const dirName = requiredDir.replace(/\/$/, "");
+  const marker = `/${dirName}/`;
+  return entries.some((name) => {
+    const normalized = name.replace(/\\/g, "/");
+    return (
+      normalized === dirName ||
+      normalized.startsWith(`${dirName}/`) ||
+      normalized.includes(marker) ||
+      normalized.endsWith(`/${dirName}`)
+    );
+  });
+}
+
 async function validate() {
   const rootIndex = readJson("index.json");
   const siteIndex = readJson("site/index.json");
@@ -189,7 +203,7 @@ async function validate() {
     const entries = listZipEntries(localRelease);
     for (const required of REQUIRED_PACKAGE_PATHS) {
       if (required.endsWith("/")) {
-        if (!entries.some((name) => name.endsWith(required))) {
+        if (!hasRequiredDirectory(entries, required)) {
           fail(`${entry.id} 的發布包缺少必要目錄：${required}`);
         }
       } else if (!entries.some((name) => name.endsWith(required))) {
