@@ -4,14 +4,14 @@
   "modules": [
     {
       "id": "examRegistration",
-      "name": "Exam Registration",
-      "description": "Student exam registration and timetable management module.",
-      "version": "1.0.0",
-      "latestVersion": "1.0.0",
-      "minHostVersion": "0.396",
+      "name": "升學考試與模擬考校內報名",
+      "description": "協助學生完成升學考試與模擬考校內報名流程，含報名資訊、時間表與狀態管理。",
+      "version": "0.1.0",
+      "latestVersion": "0.1.0",
+      "minHostVersion": "0.388",
       "repoUrl": "https://github.com/takan003/examRegistration",
       "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/examRegistration.zip",
-      "checksumSha256": "631742449B1E697E948C937CBF43740907616A7C67C793C5A045809450D5C11D",
+      "checksumSha256": "09ff9d1d57b16b408cf29867ecd2e88f1d8d816276f7a782e6fbe9d2f131df6b",
       "category": "academics",
       "tags": ["exam", "registration", "student"]
     }

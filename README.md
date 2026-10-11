@@ -10,6 +10,12 @@ It provides:
 
 The host app reads the marketplace index and installs modules from the listed download URLs.
 
+## Planning docs
+
+- [外部模組市集架設規劃書](./MARKETPLACE-PLAN.md)
+- [主題市集規劃書](./主題市集規劃書.md)
+- [模組市集精進方案規劃書（V2）](./模組市集精進方案規劃書.md)
+
 ## Directory structure
 
 ```text
@@ -47,3 +53,24 @@ Each `index.json` entry includes:
 - checksum must be validated before install
 - host version must satisfy `minHostVersion`
 - only HTTPS URLs are recommended for production
+
+## Publishing checklist (required)
+
+Before merging marketplace changes, make sure every module release passes all checks below:
+
+1. `releases/<moduleId>.zip` contains a complete module package (`module.json`, `admin/`, `student/`, `api/`, `components/`, `lib/`, `types/`).
+2. `index.json` and `site/index.json` use identical `modules[]` records.
+3. `version`, `latestVersion`, `minHostVersion` are valid semver (`x.y.z`).
+4. `checksumSha256` is lowercase 64-hex and matches the actual zip digest.
+5. `modules/<moduleId>/module.json` stays consistent with `index.json` (`value`, `author.version`, `minHostVersion`).
+
+Validation is enforced by CI workflow:
+
+- [`.github/workflows/validate-marketplace.yml`](./.github/workflows/validate-marketplace.yml)
+- [`scripts/validate-marketplace-index.mjs`](./scripts/validate-marketplace-index.mjs)
+
+Run the same checks locally:
+
+```bash
+node scripts/validate-marketplace-index.mjs
+```
