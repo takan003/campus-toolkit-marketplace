@@ -1,17 +1,17 @@
 ﻿{
-  "generatedAt": "2026-10-12T21:00:42+08:00",
+  "generatedAt": "2026-10-13T00:07:00+08:00",
   "marketplaceVersion": "1.0.0",
   "modules": [
     {
       "id": "examRegistration",
       "name": "升學考試與模擬考校內報名",
       "description": "協助學生完成升學考試與模擬考校內報名流程，含報名資訊、時間表與狀態管理。",
-      "version": "0.1.2",
-      "latestVersion": "0.1.2",
+      "version": "0.1.3",
+      "latestVersion": "0.1.3",
       "minHostVersion": "0.391",
       "repoUrl": "https://github.com/takan003/examRegistration",
       "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/examRegistration.zip",
-      "checksumSha256": "be8a167fb12d2472de000d871f1980687f46a9781d2ebd3fe56b9fb6f02d6016",
+      "checksumSha256": "14d8a899b4cfb0759ce15054a2bea79156485c8d0996efb532fc7b0865246023",
       "category": "academics",
       "tags": ["exam", "registration", "student"]
     }
