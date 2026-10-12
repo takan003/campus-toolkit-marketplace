@@ -6,19 +6,14 @@
   "description": "校內升學考試與模擬考的選考科目登錄：承辦建立場次與科目、指定對象年級班級，學生線上登錄與修改。",
   "href": "/admin/exam-registration",
   "contractVersion": 1,
-  "minHostVersion": "0.388",
+  "minHostVersion": "0.391",
   "author": {
-    "author": "",
+    "author": "張家誠",
     "authorUrl": "",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "releasedAt": ""
   },
-  "provides": {
-    "student": true,
-    "parent": false,
-    "staff": true,
-    "admin": true
-  },
+  "provides": { "student": true, "parent": false, "staff": true, "admin": true },
   "routes": [
     { "kind": "page", "path": "/student/exam-registration" },
     { "kind": "page", "path": "/admin/exam-registration" },
