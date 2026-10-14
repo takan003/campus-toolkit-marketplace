@@ -1,2 +1,5 @@
-Release artifact placeholder for examRegistration v1.0.0.
-The actual packaged zip should be uploaded to GitHub Releases or a static release bucket.
+examRegistration v0.1.7 — 2026-10-14
+
+- Added the academic ability test official registration workbook format.
+- Added roster-based registration number composition and student identity data export.
+- Raised the minimum host version to campus-toolkit 0.488.
