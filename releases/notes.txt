@@ -1,3 +1,9 @@
+examRegistration v0.1.9 — 2026-10-15
+
+- Unified feedback messages to floating Toast style (2-second auto-dismiss) per host AGENTS.md.
+- Replaced FlashModal overlay with lightweight bottom-center Toast.
+- Replaced window.confirm with themed ConfirmModal for destructive actions.
+
 examRegistration v0.1.8 — 2026-10-15
 
 - Improved roster view to show all applicable students side by side (registered / opt-out / pending).

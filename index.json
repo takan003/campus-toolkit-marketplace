@@ -6,12 +6,12 @@
       "id": "examRegistration",
       "name": "升學考試與模擬考校內報名",
       "description": "協助學生完成升學考試與模擬考校內報名，支援場次管理、名單造冊及學科能力測驗官方報名資料檔。",
-      "version": "0.1.8",
-      "latestVersion": "0.1.8",
+      "version": "0.1.9",
+      "latestVersion": "0.1.9",
       "minHostVersion": "0.488",
       "repoUrl": "https://github.com/takan003/examRegistration",
       "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/examRegistration.zip",
-      "checksumSha256": "f8d024d9b9691f3f6796200ec34d920ed393faca87ea404207b3796db048e004",
+      "checksumSha256": "85dfddb0b9f453669108e0af1f1fef780174de234cb8f60e94a5530667068063",
       "category": "academics",
       "tags": ["exam", "registration", "student"]
     }
