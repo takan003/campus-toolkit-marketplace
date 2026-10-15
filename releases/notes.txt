@@ -1,3 +1,9 @@
+examRegistration v0.1.8 — 2026-10-15
+
+- Improved roster view to show all applicable students side by side (registered / opt-out / pending).
+- Added hard-delete action for individual registration records in the roster page.
+- Class tabs now reflect full student counts instead of registration-only counts.
+
 examRegistration v0.1.7 — 2026-10-14
 
 - Added the academic ability test official registration workbook format.
