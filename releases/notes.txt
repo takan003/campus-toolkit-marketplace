@@ -1,3 +1,8 @@
+examRegistration v0.1.16 — 2026-10-15
+
+- Required-registration staff rosters now include every active student in the homeroom class, including students who have not completed registration.
+- Standardized displayed dates as yyyy/mm/dd.
+
 examRegistration v0.1.14 — 2026-10-15
 
 - Added staff class-roster views that follow registration mode: required sessions show the full class and completion status; optional sessions show registrants only.
