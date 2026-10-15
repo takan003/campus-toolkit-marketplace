@@ -1,3 +1,7 @@
+examRegistration v0.1.19 — 2026-10-16
+
+- Staff session cards now show the registration start/end period and sort by nearest deadline; exam dates are removed from this view.
+
 examRegistration v0.1.16 — 2026-10-15
 
 - Required-registration staff rosters now include every active student in the homeroom class, including students who have not completed registration.
