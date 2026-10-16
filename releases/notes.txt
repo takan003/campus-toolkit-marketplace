@@ -1,3 +1,9 @@
+examRegistration v0.1.25 — 2026-10-16
+
+- Added parent read-only access to registration data for roster-linked children.
+- Added aggregated university arts exam data across music, art, and sports groups.
+- Added the official high-school English listening exam workbook format.
+
 examRegistration v0.1.19 — 2026-10-16
 
 - Staff session cards now show the registration start/end period and sort by nearest deadline; exam dates are removed from this view.
