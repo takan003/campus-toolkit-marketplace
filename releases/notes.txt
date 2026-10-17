@@ -1,3 +1,10 @@
+examRegistration v0.1.29 — 2026-10-17
+
+- Added the official subject aptitude exam (分科測驗) workbook format with physics, chemistry, math A/B, biology, history, geography, and civics columns.
+- Made exam location option codes and names directly editable in the event form.
+- Enter key now moves from subject name to standard fee, reduced fee, then adds a new blank subject row (skipping advanced options).
+- Jumping into a fee field now selects the existing value for easy overtyping.
+
 examRegistration v0.1.25 — 2026-10-16
 
 - Added parent read-only access to registration data for roster-linked children.
