@@ -1,3 +1,9 @@
+examRegistration v0.1.33 — 2026-10-17
+
+- Fixed official export fallback: sessions without a dedicated official format now export a generic layout based on the session's own subjects (1/0 or advanced-option code per subject column) instead of incorrectly using the academic ability test format.
+- Declared parent entrance as disabled by default (defaultRoleEnabled.parent=false; requires host 0.522+).
+- Added manifest disclosures: MIT license, repository URL, keywords, changelog, and an empty firestoreIndexes declaration.
+
 examRegistration v0.1.29 — 2026-10-17
 
 - Added the official subject aptitude exam (分科測驗) workbook format with physics, chemistry, math A/B, biology, history, geography, and civics columns.
