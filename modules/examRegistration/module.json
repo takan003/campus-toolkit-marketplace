@@ -14,7 +14,7 @@
   "author": {
     "author": "張家誠",
     "authorUrl": "https://github.com/takan003",
-    "version": "0.1.35",
+    "version": "0.1.37",
     "releasedAt": "2026-10-18"
   },
   "provides": { "student": true, "parent": true, "staff": true, "admin": true },
@@ -55,6 +55,20 @@
   ],
   "hooks": ["announcements", "calendar"],
   "changelog": [
+    {
+      "version": "0.1.37",
+      "releasedAt": "2026-10-18",
+      "notes": [
+        "管理名單依報名方式提供：自由報名只列出完成報名者（未完成／不報名不顯示）；必須報名整班全部列出（含未完成／不報名，供對帳催辦）。"
+      ]
+    },
+    {
+      "version": "0.1.36",
+      "releasedAt": "2026-10-18",
+      "notes": [
+        "名單頁嚴格省流：單班名冊只下推讀取該班名冊條目與登錄（classCode／studentClass 過濾），不再全量載入全校名冊後於記憶體過濾；班級分頁統計亦以場次對象班級下推讀取。"
+      ]
+    },
     {
       "version": "0.1.35",
       "releasedAt": "2026-10-18",

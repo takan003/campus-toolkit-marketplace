@@ -1,3 +1,13 @@
+examRegistration v0.1.37 — 2026-10-18
+
+- Admin roster list now follows the registration mode: optional sessions list only students who completed registration (pending and opt-out rows are hidden); required sessions keep listing the full class for reconciliation.
+- Empty-roster message is mode-aware ("no completed registrations" vs "no students").
+
+examRegistration v0.1.36 — 2026-10-18
+
+- Strict data-saver pushdown on the admin roster page: a single-class roster now queries only that class's roster entries and registrations (classCode / studentClass filters) instead of loading the whole student roster and filtering in memory.
+- Class-tab counts are built by pushing down the event's target classes (chunked `in` queries), reading only targeted classes.
+
 examRegistration v0.1.35 — 2026-10-18
 
 - Added event list sorting on the admin page: pick session name, exam date, or registration date; defaults to oldest-first and toggles to newest-first on click.
