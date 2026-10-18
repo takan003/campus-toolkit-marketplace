@@ -1,3 +1,8 @@
+examRegistration v0.1.35 — 2026-10-18
+
+- Added event list sorting on the admin page: pick session name, exam date, or registration date; defaults to oldest-first and toggles to newest-first on click.
+- Moved sort controls to their own row under the search bar and show them only after the list is revealed (data-saver gate).
+
 examRegistration v0.1.33 — 2026-10-17
 
 - Fixed official export fallback: sessions without a dedicated official format now export a generic layout based on the session's own subjects (1/0 or advanced-option code per subject column) instead of incorrectly using the academic ability test format.
