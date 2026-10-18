@@ -14,7 +14,7 @@
   "author": {
     "author": "張家誠",
     "authorUrl": "https://github.com/takan003",
-    "version": "0.1.37",
+    "version": "0.1.38",
     "releasedAt": "2026-10-18"
   },
   "provides": { "student": true, "parent": true, "staff": true, "admin": true },
@@ -55,6 +55,13 @@
   ],
   "hooks": ["announcements", "calendar"],
   "changelog": [
+    {
+      "version": "0.1.38",
+      "releasedAt": "2026-10-18",
+      "notes": [
+        "修正場次清單「統計」按鈕載入失敗：延遲載入改為班級分頁後，統計面板改以 ?eventId=&stats=1 取回完整名單與統計。"
+      ]
+    },
     {
       "version": "0.1.37",
       "releasedAt": "2026-10-18",

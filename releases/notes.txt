@@ -1,3 +1,7 @@
+examRegistration v0.1.38 — 2026-10-18
+
+- Fixed the event-list "stats" button failing with "載入名單失敗": after the lazy-load refactor, `?eventId=` only returns class tabs; the stats panel now requests `?eventId=&stats=1` to fetch the full roster and statistics.
+
 examRegistration v0.1.37 — 2026-10-18
 
 - Admin roster list now follows the registration mode: optional sessions list only students who completed registration (pending and opt-out rows are hidden); required sessions keep listing the full class for reconciliation.
