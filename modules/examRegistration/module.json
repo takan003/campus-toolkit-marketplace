@@ -14,8 +14,8 @@
   "author": {
     "author": "張家誠",
     "authorUrl": "https://github.com/takan003",
-    "version": "0.1.38",
-    "releasedAt": "2026-10-18"
+    "version": "0.1.41",
+    "releasedAt": "2026-10-19"
   },
   "provides": { "student": true, "parent": true, "staff": true, "admin": true },
   "defaultRoleEnabled": { "parent": false },
@@ -55,6 +55,28 @@
   ],
   "hooks": ["announcements", "calendar"],
   "changelog": [
+    {
+      "version": "0.1.41",
+      "releasedAt": "2026-10-19",
+      "notes": [
+        "學生頁頂部增設「下載報名表說明」警告區（分點式），提示手機下載與封存提醒兩項修正。"
+      ]
+    },
+    {
+      "version": "0.1.40",
+      "releasedAt": "2026-10-19",
+      "notes": [
+        "說明區改為分點式排版並精簡文字。"
+      ]
+    },
+    {
+      "version": "0.1.39",
+      "releasedAt": "2026-10-19",
+      "notes": [
+        "修正手機版「下載為PDF」得到空白檔案：列印版面改以 afterprint 事件卸載（＋2 分鐘兜底），手機、電腦皆可正常下載。",
+        "封存提醒僅在開放學生自行封存且未封存時出現；承辦關閉自行封存時直接下載，不再跳出多餘提示。"
+      ]
+    },
     {
       "version": "0.1.38",
       "releasedAt": "2026-10-18",

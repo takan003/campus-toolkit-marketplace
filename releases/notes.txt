@@ -1,3 +1,16 @@
+examRegistration v0.1.41 — 2026-10-19
+
+- Added a warning-themed notice at the top of the student page explaining the two download fixes below (bullet points, concise wording).
+
+examRegistration v0.1.40 — 2026-10-19
+
+- Reworked the notice into a compact bullet-point layout.
+
+examRegistration v0.1.39 — 2026-10-19
+
+- Fixed blank PDF downloads on mobile: the print sheet is now unmounted on the `afterprint` event (with a 2-minute fallback) instead of immediately after `window.print()`, which raced with mobile's asynchronous print snapshot.
+- The "not archived yet" reminder before downloading now appears only when the session allows student self-archiving and the data is not archived; students download directly without the extra prompt when the organizer has disabled self-archiving.
+
 examRegistration v0.1.38 — 2026-10-18
 
 - Fixed the event-list "stats" button failing with "載入名單失敗": after the lazy-load refactor, `?eventId=` only returns class tabs; the stats panel now requests `?eventId=&stats=1` to fetch the full roster and statistics.
