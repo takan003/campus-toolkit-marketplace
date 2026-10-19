@@ -14,7 +14,7 @@
   "author": {
     "author": "張家誠",
     "authorUrl": "https://github.com/takan003",
-    "version": "0.1.41",
+    "version": "0.1.43",
     "releasedAt": "2026-10-19"
   },
   "provides": { "student": true, "parent": true, "staff": true, "admin": true },
@@ -55,6 +55,23 @@
   ],
   "hooks": ["announcements", "calendar"],
   "changelog": [
+    {
+      "version": "0.1.43",
+      "releasedAt": "2026-10-19",
+      "notes": [
+        "廢止科目名額上限（capacity）機制：移除學生端 n/m 與額滿鎖定、移除送出時額滿拒絕（409）、移除管理表單名額欄位與驗證；舊資料的 capacity 欄位一律忽略。",
+        "同步移除 0.1.42 的 examEventCounters 計數器——人數聚合隨名額機制一併廢除，學生端不再有任何各科人數讀取。"
+      ]
+    },
+    {
+      "version": "0.1.42",
+      "releasedAt": "2026-10-19",
+      "notes": [
+        "大幅省流：新增 examEventCounters 場次人數計數器，學生端 n/m 改讀計數器（每場次 1 點查），額滿檢查與人數統計不再全量掃描場次登錄——讀取量與報名人數無關。",
+        "學生寫入（登錄／取消／封存）只清模組內快取、不再 bump 全站 cacheEpoch——報名高峰 30 秒快取不再被打爆；管理端名單／統計跨實例延遲上限 30 秒，匯出仍即時。",
+        "家長端綁定子女改以學號＋學期下推查詢（1 筆、約 1 讀），取代整期全校名冊全量讀取。"
+      ]
+    },
     {
       "version": "0.1.41",
       "releasedAt": "2026-10-19",

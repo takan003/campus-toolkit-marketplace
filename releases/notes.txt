@@ -1,3 +1,8 @@
+examRegistration v0.1.43 — 2026-10-19
+
+- Removed the deprecated per-subject capacity mechanism entirely: no more "n/m" counts or full-session lockouts on the student page, no more 409 capacity rejection on submit, and no capacity field in the admin form. Legacy `capacity` fields in stored data are ignored.
+- Removed the 0.1.42 `examEventCounters` documents along with it — per-subject headcount aggregation is gone, so the student GET no longer performs any count reads.
+
 examRegistration v0.1.41 — 2026-10-19
 
 - Added a warning-themed notice at the top of the student page explaining the two download fixes below (bullet points, concise wording).
