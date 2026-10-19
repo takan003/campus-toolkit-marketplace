@@ -14,7 +14,7 @@
   "author": {
     "author": "張家誠",
     "authorUrl": "https://github.com/takan003",
-    "version": "0.1.43",
+    "version": "0.1.44",
     "releasedAt": "2026-10-19"
   },
   "provides": { "student": true, "parent": true, "staff": true, "admin": true },
@@ -55,6 +55,13 @@
   ],
   "hooks": ["announcements", "calendar"],
   "changelog": [
+    {
+      "version": "0.1.44",
+      "releasedAt": "2026-10-19",
+      "notes": [
+        "學生頁「必須報名」提示移除 var(--warning) 的 fallback 色值——遵守主程式 §3.5 CSS 主題套用契約條文 4（宿主保證 token 必有值，fallback 會掩蓋缺漏）。"
+      ]
+    },
     {
       "version": "0.1.43",
       "releasedAt": "2026-10-19",

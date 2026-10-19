@@ -1,3 +1,7 @@
+examRegistration v0.1.44 — 2026-10-19
+
+- Removed `var(--warning)` fallback color arguments from the student page's required-registration notice, following the host CSS theme contract (clause: host tokens are always present; fallbacks only mask token gaps).
+
 examRegistration v0.1.43 — 2026-10-19
 
 - Removed the deprecated per-subject capacity mechanism entirely: no more "n/m" counts or full-session lockouts on the student page, no more 409 capacity rejection on submit, and no capacity field in the admin form. Legacy `capacity` fields in stored data are ignored.
