@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-10-19T23:23:14.000Z",
+  "generatedAt": "2026-10-20T02:12:36.000Z",
   "marketplaceVersion": "1.0.0",
   "modules": [
     {
       "id": "examRegistration",
       "name": "升學考試與模擬考校內報名",
       "description": "提供學生升學考試與模擬考報名、家長唯讀查詢綁定子女資料，以及音樂／美術／體育術科、英聽、學測、分科測驗與通用官方報名資料檔。",
-      "version": "0.1.44",
-      "latestVersion": "0.1.44",
-      "minHostVersion": "0.488",
+      "version": "0.1.46",
+      "latestVersion": "0.1.46",
+      "minHostVersion": "0.551",
       "repoUrl": "https://github.com/takan003/examRegistration",
       "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/examRegistration.zip",
-      "checksumSha256": "30118a7e4fc15e7157de2fe1569c27be1641afa8475ed32ba857e04aeb909a52",
+      "checksumSha256": "07dd4ddd0f20f7cdf1f3e3b284363b38619ad767489e6df319694750c78cac80",
       "category": "academics",
       "tags": [
         "exam",

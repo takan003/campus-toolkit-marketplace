@@ -1,3 +1,14 @@
+examRegistration v0.1.46 — 2026-10-20
+
+- Cache TTL is now read from the host system setting `cacheTtlSeconds` (Settings → 省錢專區, range 30–300 s) instead of a hardcoded 30 s. Student-visible event list and admin roster / applicable-students caches all follow this unified setting. Requires host 0.551+.
+
+examRegistration v0.1.45 — 2026-10-20
+
+- Admin roster reads pushed down by grade: when an event targets grades without an explicit class list, the applicable-students query now uses `grade in [...]` instead of loading the entire school roster (e.g. a grade-3 event at a 922-student school drops from 922 reads to ~311).
+- Extracted a shared 30-second cache for applicable students so class tabs, the stats panel, and xlsx export reuse one Firestore read instead of each loading the full roster independently.
+- xlsx export (all / pending scopes) now reuses the applicable-students cache instead of scanning the whole period roster.
+- Declared composite indexes on `rosterStudents` (`academicYear+semester+grade` / `classCode`) in `module.json`.
+
 examRegistration v0.1.44 — 2026-10-19
 
 - Removed `var(--warning)` fallback color arguments from the student page's required-registration notice, following the host CSS theme contract (clause: host tokens are always present; fallbacks only mask token gaps).

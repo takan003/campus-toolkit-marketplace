@@ -6,16 +6,19 @@
   "description": "校內升學考試與模擬考的選考科目登錄：承辦建立場次與科目、指定對象年級班級，學生線上登錄與修改，家長可唯讀查看名冊綁定子女的報名資料。",
   "href": "/admin/exam-registration",
   "contractVersion": 1,
-  "minHostVersion": "0.488",
+  "minHostVersion": "0.551",
   "license": "MIT",
   "repository": "https://github.com/takan003/examRegistration",
   "keywords": ["考試", "報名", "造冊", "家長"],
-  "firestoreIndexes": [],
+  "firestoreIndexes": [
+    { "collection": "rosterStudents", "fields": ["academicYear", "semester", "grade"] },
+    { "collection": "rosterStudents", "fields": ["academicYear", "semester", "classCode"] }
+  ],
   "author": {
     "author": "張家誠",
     "authorUrl": "https://github.com/takan003",
-    "version": "0.1.44",
-    "releasedAt": "2026-10-19"
+    "version": "0.1.46",
+    "releasedAt": "2026-10-20"
   },
   "provides": { "student": true, "parent": true, "staff": true, "admin": true },
   "defaultRoleEnabled": { "parent": false },
@@ -55,6 +58,23 @@
   ],
   "hooks": ["announcements", "calendar"],
   "changelog": [
+    {
+      "version": "0.1.46",
+      "releasedAt": "2026-10-20",
+      "notes": [
+        "快取壽命改讀主程式系統設定（settings.cacheTtlSeconds，省錢專區，30–300 秒）：學生可見場次與管理端名單／應對象快取不再寫死 30 秒，由超級管理員統一調整。需主程式 0.551+（提供 getCacheTtlSeconds）。"
+      ]
+    },
+    {
+      "version": "0.1.45",
+      "releasedAt": "2026-10-20",
+      "notes": [
+        "管理端省流根治：場次對象僅指定年級（無班級清單）時，名冊改以 grade in [...] 下推查詢——回傳筆數≈該年級人數而非全校（例：全校 922 人的高三場次從 922 讀降至 311 讀）。",
+        "應對象學生抽出共用 30 秒快取（tabs／統計面板／xlsx 匯出同享）：同一場次短時間內各端點只讀一次 Firestore，不再各自全量重讀。",
+        "xlsx 匯出 all/pending 從整期全校名冊改走應對象快取（同享年級/班級下推）。",
+        "module.json 宣告 rosterStudents 複合索引（academicYear+semester+grade／classCode）——安裝後於主程式 firestore.indexes.json 建立對應索引。"
+      ]
+    },
     {
       "version": "0.1.44",
       "releasedAt": "2026-10-19",
