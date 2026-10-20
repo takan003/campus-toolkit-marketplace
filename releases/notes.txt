@@ -1,3 +1,8 @@
+examRegistration v0.1.47 — 2026-10-20
+
+- Aligned with the host "different-identity management policy" (requires host 0.558+): declared `managerPermissions` sub-permissions (`viewRoster` / `configure` / `approve` / `export`) in `module.json`. Admin APIs now gate each action via `requireModulePermission` — admins always have full access; staff / parent / student accounts are designated per semester by an admin on the Feature Modules page and can only execute the checked sub-permissions.
+- Admin pages hide actions the current session lacks (create / edit / delete / unarchive / export).
+
 examRegistration v0.1.46 — 2026-10-20
 
 - Cache TTL is now read from the host system setting `cacheTtlSeconds` (Settings → 省錢專區, range 30–300 s) instead of a hardcoded 30 s. Student-visible event list and admin roster / applicable-students caches all follow this unified setting. Requires host 0.551+.
