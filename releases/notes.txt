@@ -1,3 +1,7 @@
+examRegistration v0.1.49 — 2026-10-21
+
+- The staff page no longer shows the "unable to load class registration data" notice for teachers who are not homeroom teachers (no class code): that section is simply hidden (silent 403 handling), so a delegated manager only sees the management panel below. Other failures (e.g. 500) still surface the error message.
+
 examRegistration v0.1.48 — 2026-10-21
 
 - Delegated managers now use the granted management features inside their own role page (student / parent / staff) instead of being sent to /admin: a new manager panel (`components/manager-panel.tsx`) renders only when `session.delegatedModules` grants this module. It embeds the event list with create / edit / delete (configure), and switches to the roster / approval / export view (viewRoster / approve / export) when the URL carries `?eventId=`; a "back to events" link stays on the same page.
