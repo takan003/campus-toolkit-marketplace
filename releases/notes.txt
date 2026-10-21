@@ -1,3 +1,8 @@
+examRegistration v0.1.48 — 2026-10-21
+
+- Delegated managers now use the granted management features inside their own role page (student / parent / staff) instead of being sent to /admin: a new manager panel (`components/manager-panel.tsx`) renders only when `session.delegatedModules` grants this module. It embeds the event list with create / edit / delete (configure), and switches to the roster / approval / export view (viewRoster / approve / export) when the URL carries `?eventId=`; a "back to events" link stays on the same page.
+- The admin event list's "view roster" link and the roster page's "back to events" link are now parameterised (`rosterHrefBase` / `listHref`, defaulting to the /admin paths), so /admin behaviour is unchanged.
+
 examRegistration v0.1.47 — 2026-10-20
 
 - Aligned with the host "different-identity management policy" (requires host 0.558+): declared `managerPermissions` sub-permissions (`viewRoster` / `configure` / `approve` / `export`) in `module.json`. Admin APIs now gate each action via `requireModulePermission` — admins always have full access; staff / parent / student accounts are designated per semester by an admin on the Feature Modules page and can only execute the checked sub-permissions.
