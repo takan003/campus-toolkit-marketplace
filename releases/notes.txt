@@ -1,3 +1,21 @@
+examRegistration v0.1.53 — 2026-10-21
+
+- Unified the page width with the role home page: all top-level blocks of the student / parent / staff pages (title, dividers, buttons, base features, footer) plus the delegated-manager panel now use the host's `content-width` (80vw, min 286px), so both zones share one ruler. The embedded event-management / roster pages gain a `fill` prop to stretch inside the panel; standalone `/admin` usage keeps the `max-w-4xl` standard.
+
+examRegistration v0.1.52 — 2026-10-21
+
+- Unified the page skeleton to a single width (`max-w-4xl`) across the three role pages and kept paragraph-level text at an inner `max-w-2xl` for comfortable line length (superseded by 0.1.53, which adopts `content-width`).
+
+examRegistration v0.1.51 — 2026-10-21
+
+- Staff page: widened the gap between the page title and the buttons, and shows "兼導師班級：{classCode}" under the title — the API now returns `classCode` even when it fails, so the class name stays visible.
+- When there is no session, none applicable to the teacher's class, or the backend temporarily cannot serve data, the page shows "目前沒有適用的考試場次" instead of any "contact your administrator" notice. Teachers who are not homeroom teachers still get the whole section hidden.
+
+examRegistration v0.1.50 — 2026-10-21
+
+- The delegated-manager panel inside role pages is renamed to "管理功能" and becomes collapsible (details/summary + DisclosureArrow, collapsed by default; auto-expands when the URL carries `?eventId=` for the roster view). Its description now ends with "下方為此身分的基本功能。"
+- Student / parent / staff pages reordered: the management panel comes first, the role's own base features below it.
+
 examRegistration v0.1.49 — 2026-10-21
 
 - The staff page no longer shows the "unable to load class registration data" notice for teachers who are not homeroom teachers (no class code): that section is simply hidden (silent 403 handling), so a delegated manager only sees the management panel below. Other failures (e.g. 500) still surface the error message.
