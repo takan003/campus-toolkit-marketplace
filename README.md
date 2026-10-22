@@ -12,6 +12,7 @@ The host app reads the marketplace index and installs modules from the listed do
 
 ## Planning docs
 
+- [模組開發與發布指南（精簡版）](./模組開發與發布指南.md) — module developers start here; full guide: `takan003/campus-toolkit` → `docs/選用功能模組開發者指南.md`
 - [外部模組市集架設規劃書](./MARKETPLACE-PLAN.md)
 - [主題市集規劃書](./主題市集規劃書.md)
 - [模組市集精進方案規劃書（V2）](./模組市集精進方案規劃書.md)

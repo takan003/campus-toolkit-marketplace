@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>開發者文件｜功能模組市集</title>
+    <style>
+      :root {
+        --bg: #efeff4;
+        --panel: #f8f8fb;
+        --surface: #ffffff;
+        --line: #dfe3ec;
+        --text: #1d2736;
+        --muted: #6d7788;
+        --primary: #2a6ee3;
+        --primary-soft: #edf3ff;
+        --code-bg: #f3f5f9;
+        --shadow: 0 12px 30px rgba(18, 30, 52, 0.06);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", "Microsoft JhengHei", ui-sans-serif, sans-serif;
+      }
+
+      a { color: var(--primary); }
+
+      .page { max-width: 1200px; margin: 0 auto; padding-bottom: 80px; }
+
+      .topbar {
+        height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 0 20px;
+        background: rgba(255,255,255,0.78);
+        border-bottom: 1px solid rgba(141, 151, 170, 0.3);
+        backdrop-filter: blur(8px);
+      }
+
+      .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+
+      .brand-mark {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #ffb347, #f97316);
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+
+      .topbar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 34px;
+        padding: 0 14px;
+        border-radius: 999px;
+        background: #edf3ff;
+        color: var(--primary);
+        border: 1px solid rgba(42, 110, 227, 0.18);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      a.pill { text-decoration: none; }
+      a.pill:hover { background: #dfe9ff; }
+
+      .container { width: min(1200px, calc(100% - 40px)); margin: 0 auto; }
+
+      .hero {
+        margin-top: 32px;
+        padding: 28px 30px 22px;
+        background: rgba(255,255,255,0.5);
+        border: 1px solid rgba(135, 147, 167, 0.24);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      h1 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.05em; }
+      .subtitle { margin: 10px 0 0; color: var(--muted); font-size: 1rem; line-height: 1.7; }
+
+      .group-title {
+        margin: 30px 0 14px;
+        font-size: 1.05rem;
+        letter-spacing: -0.02em;
+      }
+
+      .doc-list { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+      .doc-card {
+        background: rgba(255,255,255,0.55);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .doc-title { margin: 0; font-size: 1.05rem; }
+      .doc-desc { margin: 8px 0 12px; color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+      .doc-meta { margin-bottom: 12px; font-size: 0.75rem; color: var(--muted); word-break: break-all; }
+
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+      .btn {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 120px;
+        height: 40px;
+        padding: 0 16px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        font-weight: 700;
+        font-size: 0.88rem;
+        cursor: pointer;
+        background: #fff;
+        color: var(--text);
+        border-color: var(--line);
+      }
+
+      .btn.primary { background: var(--primary); color: #fff; border-color: transparent; }
+      .btn:hover { filter: brightness(0.97); }
+
+      .reader {
+        display: none;
+        margin-top: 24px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .reader.open { display: block; }
+
+      .reader-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      .reader-bar strong { font-size: 0.95rem; }
+      .reader-bar .actions { gap: 8px; }
+      .reader-bar .btn { min-width: auto; height: 34px; font-size: 0.8rem; padding: 0 12px; }
+
+      .reader-body {
+        padding: 22px 24px 30px;
+        line-height: 1.8;
+        font-size: 0.95rem;
+        overflow-x: auto;
+      }
+
+      .reader-body h1, .reader-body h2, .reader-body h3, .reader-body h4 {
+        line-height: 1.4;
+        letter-spacing: -0.02em;
+        margin: 1.4em 0 0.6em;
+      }
+
+      .reader-body h1 { font-size: 1.5rem; margin-top: 0; }
+      .reader-body h2 { font-size: 1.25rem; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+      .reader-body h3 { font-size: 1.08rem; }
+      .reader-body p { margin: 0.7em 0; }
+      .reader-body ul, .reader-body ol { padding-left: 1.5em; margin: 0.6em 0; }
+      .reader-body li { margin: 0.3em 0; }
+      .reader-body code {
+        background: var(--code-bg);
+        border-radius: 6px;
+        padding: 2px 6px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.88em;
+      }
+      .reader-body pre {
+        background: var(--code-bg);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 14px;
+        overflow-x: auto;
+      }
+      .reader-body pre code { background: none; padding: 0; font-size: 0.85rem; }
+      .reader-body blockquote {
+        margin: 0.8em 0;
+        padding: 6px 14px;
+        border-left: 4px solid var(--primary);
+        background: var(--primary-soft);
+        color: var(--muted);
+      }
+      .reader-body table { border-collapse: collapse; margin: 0.8em 0; width: 100%; }
+      .reader-body th, .reader-body td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; font-size: 0.88rem; }
+      .reader-body th { background: var(--panel); }
+      .reader-body hr { border: none; border-top: 1px solid var(--line); margin: 1.4em 0; }
+      .reader-body details { margin: 0.8em 0; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; background: var(--panel); }
+      .reader-body summary { cursor: pointer; font-weight: 700; }
+
+      .reader-status { padding: 16px 24px; color: var(--muted); }
+
+      .site-footer {
+        margin-top: 40px;
+        padding: 18px 20px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.82rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: space-between;
+      }
+
+      .site-footer a { color: var(--primary); text-decoration: none; font-weight: 700; }
+
+      @media (max-width: 700px) {
+        .topbar { height: auto; padding: 12px 16px; flex-wrap: wrap; }
+        .reader-body { padding: 16px 14px 24px; }
+        .btn { min-width: 100px; flex: 1 1 auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-mark">數</div>
+          <div class="brand-name">數位校園工具箱</div>
+        </div>
+        <div class="topbar-actions">
+          <a class="pill" href="./index.html">← 返回市集</a>
+          <div class="pill">開發者文件</div>
+        </div>
+      </div>
+
+      <div class="container">
+        <section class="hero">
+          <h1>開發者文件中心</h1>
+          <p class="subtitle">
+            選用功能模組（外掛）開發所需的全部文件：可在此<strong>線上閱讀</strong>、<strong>下載 .md
+            原始檔</strong>，或連到 GitHub 檢視最新版本。文件存放在宿主與市集兩個 repo，
+            本頁顯示的永遠是遠端最新內容。
+          </p>
+        </section>
+
+        <div id="doc-groups"></div>
+
+        <section class="reader" id="reader" aria-live="polite">
+          <div class="reader-bar">
+            <strong id="reader-title">文件閱讀</strong>
+            <div class="actions">
+              <button class="btn" id="reader-download" type="button">下載 .md</button>
+              <a class="btn" id="reader-github" href="#" target="_blank" rel="noreferrer">GitHub 原始頁</a>
+              <button class="btn" id="reader-close" type="button">關閉</button>
+            </div>
+          </div>
+          <div class="reader-status" id="reader-status">載入中…</div>
+          <div class="reader-body" id="reader-body" hidden></div>
+        </section>
+
+        <footer class="site-footer">
+          <span>© 數位校園工具箱 · 功能模組市集</span>
+          <span>
+            <a href="https://github.com/takan003/campus-toolkit" target="_blank" rel="noreferrer">宿主主程式</a>
+            ·
+            <a href="https://github.com/takan003/campus-toolkit-marketplace" target="_blank" rel="noreferrer">市集 repo</a>
+            ·
+            <a href="https://github.com/takan003/examRegistration" target="_blank" rel="noreferrer">範例模組</a>
+          </span>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      const HOST_RAW = 'https://raw.githubusercontent.com/takan003/campus-toolkit/main/';
+      const HOST_BLOB = 'https://github.com/takan003/campus-toolkit/blob/main/';
+      const MARKET_RAW = 'https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/';
+      const MARKET_BLOB = 'https://github.com/takan003/campus-toolkit-marketplace/blob/main/';
+
+      const DOC_GROUPS = [
+        {
+          title: '給模組開發者',
+          docs: [
+            {
+              title: '選用功能模組開發者指南（撰寫前說明書）',
+              desc: '開工前 30 分鐘讀物：架構心智模型、最小 Hello 模組骨架、公開面白名單、UI／資料庫契約、常見錯誤對照表、給 AI 協作平台的鐵律。',
+              repo: 'campus-toolkit',
+              path: 'docs/選用功能模組開發者指南.md',
+              raw: HOST_RAW,
+              blob: HOST_BLOB,
+            },
+            {
+              title: '模組開發與發布指南（精簡版）',
+              desc: '本市場的模組開發與發布精簡流程：開發 6 步、打包與發布 5 檔同步、CI 驗證閘門、push 禁令。',
+              repo: 'campus-toolkit-marketplace',
+              path: '模組開發與發布指南.md',
+              raw: MARKET_RAW,
+              blob: MARKET_BLOB,
+            },
+          ],
+        },
+      ];
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function rawUrl(doc) {
+        return doc.raw + doc.path.split('/').map(encodeURIComponent).join('/');
+      }
+
+      function blobUrl(doc) {
+        return doc.blob + doc.path.split('/').map(encodeURIComponent).join('/');
+      }
+
+      function renderGroups() {
+        const host = document.getElementById('doc-groups');
+        host.innerHTML = DOC_GROUPS.map((group) => `
+          <h2 class="group-title">${escapeHtml(group.title)}</h2>
+          <div class="doc-list">
+            ${group.docs.map((doc, index) => `
+              <article class="doc-card">
+                <h3 class="doc-title">${escapeHtml(doc.title)}</h3>
+                <p class="doc-desc">${escapeHtml(doc.desc)}</p>
+                <div class="doc-meta">${escapeHtml(doc.repo)} / ${escapeHtml(doc.path)}</div>
+                <div class="actions">
+                  <button class="btn primary" type="button" data-read="${escapeHtml(group.title)}::${index}">線上閱讀</button>
+                  <button class="btn" type="button" data-download="${escapeHtml(group.title)}::${index}">下載 .md</button>
+                  <a class="btn" href="${escapeHtml(blobUrl(doc))}" target="_blank" rel="noreferrer">GitHub</a>
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        `).join('');
+
+        host.querySelectorAll('[data-read]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const doc = findDoc(button.dataset.read);
+            if (doc) openReader(doc);
+          });
+        });
+
+        host.querySelectorAll('[data-download]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const doc = findDoc(button.dataset.download);
+            if (doc) downloadDoc(doc);
+          });
+        });
+      }
+
+      function findDoc(key) {
+        if (!key) return null;
+        const [groupName, index] = key.split('::');
+        const group = DOC_GROUPS.find((item) => item.title === groupName);
+        return (group && group.docs[Number(index)]) || null;
+      }
+
+      function inlineFormat(text) {
+        let html = text;
+        const codeSlots = [];
+        html = html.replace(/`([^`]+)`/g, (match, code) => {
+          codeSlots.push(code);
+          return '\u0000CODE' + (codeSlots.length - 1) + '\u0000';
+        });
+        html = html.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, label, url) =>
+          `<a href="${url}" target="_blank" rel="noreferrer">${label}</a>`);
+        html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/\u0000CODE(\d+)\u0000/g, (match, slot) => `<code>${codeSlots[Number(slot)]}</code>`);
+        return html;
+      }
+
+      function renderMarkdown(source) {
+        const lines = String(source).replace(/\r\n/g, '\n').split('\n');
+        const out = [];
+        let index = 0;
+        let inCode = false;
+        let codeBuf = [];
+        let listStack = [];
+
+        const closeLists = () => {
+          while (listStack.length) out.push(listStack.pop() === 'ol' ? '</ol>' : '</ul>');
+        };
+
+        while (index < lines.length) {
+          const line = lines[index];
+
+          if (/^\s*```/.test(line)) {
+            if (inCode) {
+              out.push('<pre><code>' + escapeHtml(codeBuf.join('\n')) + '</code></pre>');
+              codeBuf = [];
+              inCode = false;
+            } else {
+              closeLists();
+              inCode = true;
+            }
+            index += 1;
+            continue;
+          }
+
+          if (inCode) {
+            codeBuf.push(line);
+            index += 1;
+            continue;
+          }
+
+          if (!line.trim()) {
+            closeLists();
+            index += 1;
+            continue;
+          }
+
+          if (/^\s*\|.*\|\s*$/.test(line) && /^\s*\|[\s:|-]+\|\s*$/.test(lines[index + 1] || '')) {
+            closeLists();
+            const cells = (row) => row.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((cell) => cell.trim());
+            const header = cells(line);
+            index += 2;
+            const rows = [];
+            while (index < lines.length && /^\s*\|.*\|\s*$/.test(lines[index])) {
+              rows.push(cells(lines[index]));
+              index += 1;
+            }
+            out.push('<table><thead><tr>' +
+              header.map((cell) => `<th>${inlineFormat(escapeHtml(cell))}</th>`).join('') +
+              '</tr></thead><tbody>' +
+              rows.map((row) => '<tr>' + row.map((cell) => `<td>${inlineFormat(escapeHtml(cell))}</td>`).join('') + '</tr>').join('') +
+              '</tbody></table>');
+            continue;
+          }
+
+          const heading = line.match(/^(#{1,6})\s+(.*)$/);
+          if (heading) {
+            closeLists();
+            const level = Math.min(Math.max(heading[1].length, 2), 4);
+            out.push(`<h${level}>${inlineFormat(escapeHtml(heading[2]))}</h${level}>`);
+            index += 1;
+            continue;
+          }
+
+          if (/^\s*(---|\*\*\*)\s*$/.test(line)) {
+            closeLists();
+            out.push('<hr />');
+            index += 1;
+            continue;
+          }
+
+          if (/^\s*>\s?/.test(line)) {
+            closeLists();
+            const quote = [];
+            while (index < lines.length && /^\s*>\s?/.test(lines[index])) {
+              quote.push(lines[index].replace(/^\s*>\s?/, ''));
+              index += 1;
+            }
+            out.push(`<blockquote>${inlineFormat(escapeHtml(quote.join(' ')))}</blockquote>`);
+            continue;
+          }
+
+          const bullet = line.match(/^\s*([-*])\s+(.*)$/);
+          const ordered = line.match(/^\s*(\d+)\.\s+(.*)$/);
+          if (bullet || ordered) {
+            const wanted = bullet ? 'ul' : 'ol';
+            if (listStack[listStack.length - 1] !== wanted) {
+              if (listStack.length) out.push(listStack.pop() === 'ol' ? '</ol>' : '</ul>');
+              listStack.push(wanted);
+              out.push(wanted === 'ol' ? '<ol>' : '<ul>');
+            }
+            const content = (bullet ? bullet[2] : ordered[2]);
+            out.push(`<li>${inlineFormat(escapeHtml(content))}</li>`);
+            index += 1;
+            continue;
+          }
+
+          const details = line.match(/^\s*<details(\s+open)?>\s*$/i);
+          if (details) {
+            closeLists();
+            const open = details[1] ? ' open' : '';
+            const buf = [];
+            index += 1;
+            while (index < lines.length && !/^\s*<\/details>\s*$/i.test(lines[index])) {
+              buf.push(lines[index]);
+              index += 1;
+            }
+            index += 1;
+            out.push(`<details${open}>${renderMarkdown(buf.join('\n'))}</details>`);
+            continue;
+          }
+
+          if (/^\s*<\/?(summary|details)/i.test(line)) {
+            index += 1;
+            continue;
+          }
+
+          closeLists();
+          out.push(`<p>${inlineFormat(escapeHtml(line))}</p>`);
+          index += 1;
+        }
+
+        if (inCode && codeBuf.length) {
+          out.push('<pre><code>' + escapeHtml(codeBuf.join('\n')) + '</code></pre>');
+        }
+        closeLists();
+        return out.join('');
+      }
+
+      let currentDoc = null;
+
+      async function openReader(doc) {
+        currentDoc = doc;
+        const reader = document.getElementById('reader');
+        const status = document.getElementById('reader-status');
+        const body = document.getElementById('reader-body');
+
+        document.getElementById('reader-title').textContent = doc.title;
+        document.getElementById('reader-github').href = blobUrl(doc);
+        body.hidden = true;
+        status.hidden = false;
+        status.textContent = '載入中…';
+        reader.classList.add('open');
+        reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        try {
+          const response = await fetch(rawUrl(doc), { cache: 'no-store' });
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          const text = await response.text();
+          body.innerHTML = renderMarkdown(text);
+          status.hidden = true;
+          body.hidden = false;
+        } catch (error) {
+          status.hidden = false;
+          status.innerHTML =
+            '無法載入文件內容（' + escapeHtml(String(error.message || error)) + '）。' +
+            '可能是該文件尚未 push 到遠端，或目前無網路——請改用「GitHub 原始頁」或「下載 .md」。';
+        }
+      }
+
+      async function downloadDoc(doc) {
+        const filename = doc.path.split('/').pop();
+        try {
+          const response = await fetch(rawUrl(doc), { cache: 'no-store' });
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+          const anchor = document.createElement('a');
+          anchor.href = url;
+          anchor.download = filename;
+          document.body.appendChild(anchor);
+          anchor.click();
+          anchor.remove();
+          URL.revokeObjectURL(url);
+        } catch (error) {
+          window.open(rawUrl(doc), '_blank', 'noopener');
+        }
+      }
+
+      document.getElementById('reader-close').addEventListener('click', () => {
+        document.getElementById('reader').classList.remove('open');
+      });
+
+      document.getElementById('reader-download').addEventListener('click', () => {
+        if (currentDoc) downloadDoc(currentDoc);
+      });
+
+      renderGroups();
+    </script>
+  </body>
+</html>

@@ -86,6 +86,25 @@
         font-weight: 700;
       }
 
+      a.pill { text-decoration: none; }
+      a.pill:hover { background: #dfe9ff; }
+
+      .topbar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+      .site-footer {
+        margin-top: 40px;
+        padding: 18px 4px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.82rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: space-between;
+      }
+
+      .site-footer a { color: var(--primary); text-decoration: none; font-weight: 700; }
+
       .container {
         width: min(1200px, calc(100% - 40px));
         margin: 0 auto;
@@ -362,7 +381,10 @@
           <div class="brand-mark">數</div>
           <div class="brand-name">數位校園工具箱</div>
         </div>
-        <div class="pill">功能模組市集</div>
+        <div class="topbar-actions">
+          <a class="pill" href="./docs.html">開發者文件</a>
+          <div class="pill">功能模組市集</div>
+        </div>
       </div>
 
       <div class="container">
@@ -400,6 +422,17 @@
         </div>
 
         <div id="app"></div>
+
+        <footer class="site-footer">
+          <span>© 數位校園工具箱 · 功能模組市集</span>
+          <span>
+            <a href="./docs.html">開發者文件</a>
+            ·
+            <a href="https://github.com/takan003/campus-toolkit" target="_blank" rel="noreferrer">宿主主程式</a>
+            ·
+            <a href="https://github.com/takan003/campus-toolkit-marketplace" target="_blank" rel="noreferrer">市集 repo</a>
+          </span>
+        </footer>
       </div>
     </div>
 
