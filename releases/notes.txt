@@ -1,3 +1,8 @@
+examRegistration v0.1.54 — 2026-10-22
+
+- Official registration workbook download now has an "忽略身分證" (ignore national ID) checkbox: students who never filled in their ID no longer block the export when it is checked; their rows are placed at the very top of the spreadsheet and the remaining rows are sorted by registration number ascending. Without the checkbox the previous behaviour is kept (export is blocked and the class / name of each missing student is listed).
+- The sort rule (missing-ID rows first, then registration number ascending) also applies to the university arts exam official workbook.
+
 examRegistration v0.1.53 — 2026-10-21
 
 - Unified the page width with the role home page: all top-level blocks of the student / parent / staff pages (title, dividers, buttons, base features, footer) plus the delegated-manager panel now use the host's `content-width` (80vw, min 286px), so both zones share one ruler. The embedded event-management / roster pages gain a `fill` prop to stretch inside the panel; standalone `/admin` usage keeps the `max-w-4xl` standard.
