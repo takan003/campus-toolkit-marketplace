@@ -1,3 +1,9 @@
+selfDirectedLearning v0.0.1 — 2026-10-23
+
+- Initial release of the self-directed learning plan module (108 curriculum guideline): students submit a term plan (topic, study group, optional advisor, per-week schedule with venue and flexible-learning / after-school timing) inside the school-configured window; reviewers approve or return it with comments; homeroom teachers browse the whole class; parents view their child's plan.
+- Admin settings cover the application window, maximum number of weeks, flexible-learning period schedule, open venues, reviewer roster and student instructions. Saving the settings syncs an announcement and a calendar event through the module hooks (announcements / calendar); clearing the window withdraws both.
+- Manifest declares 3 data collections (selfDirectedLearningSettings / Plans / Reviews), 4 rate-limit buckets and 4 audit actions; README documents collections, hook requirements and post-install setup.
+
 examRegistration v0.1.54 — 2026-10-22
 
 - Official registration workbook download now has an "忽略身分證" (ignore national ID) checkbox: students who never filled in their ID no longer block the export when it is checked; their rows are placed at the very top of the spreadsheet and the remaining rows are sorted by registration number ascending. Without the checkbox the previous behaviour is kept (export is blocked and the class / name of each missing student is listed).
