@@ -1,3 +1,11 @@
+selfDirectedLearning v0.0.7 — 2026-10-23
+
+- Full-week count is now derived first from the host's class-day start / end (School Settings → Semester start/end), then semester dates, then academic-year dates, using the Taiwan public-sector week convention (Sunday–Saturday; a partial first or last week still counts as one full week), so schools typically get 21 or 22 weeks.
+- Both week modes share the same upper bound: the program-detected total weeks. Flexible mode is no longer uncapped. The admin help text notes that after excluding national holidays and important school events, the actual week count is the real total.
+- The admin "flexible-learning period schedule" no longer takes free text: periods are checked off from the host's school timetable settings (School Settings → Periods). If no timetable exists yet, the page prompts the school to create one first.
+- Venue suggestions on the admin page now come from the host's floor / space settings (leaf spaces only); custom venue names can still be typed freely.
+- The admin full-week hint is simplified to: the program detects N weeks automatically from the semester settings.
+
 selfDirectedLearning v0.0.3 — 2026-10-23
 
 - Removed the manually configured "total weeks of the semester" field: the real number of teaching weeks varies with holidays and midterm / final exams, so a hand-maintained cap is meaningless. The "fill every week of the semester" mode now derives the required week count automatically from the host's school-semester start / end dates (School Settings → Semester start/end, falling back to academic-year start / end). If those dates are not configured yet, submission is blocked with a hint to switch to flexible mode or ask the school to fill them in.
