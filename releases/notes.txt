@@ -1,3 +1,9 @@
+selfDirectedLearning v0.0.3 — 2026-10-23
+
+- Removed the manually configured "total weeks of the semester" field: the real number of teaching weeks varies with holidays and midterm / final exams, so a hand-maintained cap is meaningless. The "fill every week of the semester" mode now derives the required week count automatically from the host's school-semester start / end dates (School Settings → Semester start/end, falling back to academic-year start / end). If those dates are not configured yet, submission is blocked with a hint to switch to flexible mode or ask the school to fill them in.
+- The two week modes stay: "fill every week of the semester" (default) and "flexible weeks" (reveals the advanced minimum-weeks field). Flexible mode no longer has an upper cap (a server-side abuse guard of 104 weeks remains).
+- README and the development plan document the change; the settings document no longer stores maxWeeks (legacy values are ignored on read).
+
 selfDirectedLearning v0.0.2 — 2026-10-23
 
 - The admin page is renamed to "管理規則" (Management Rules) and the application-window card gains a master switch for the whole module: while it is off, the student / staff / parent pages show only a "currently under maintenance" notice and every write API returns 403 (the admin page keeps working), so data can be maintained safely at any time.
