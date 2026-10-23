@@ -1,3 +1,8 @@
+selfDirectedLearning v0.0.13 — 2026-10-23
+
+- Declares managerPermissions (configure = management rules / review = approve or return plans / viewPlans = view plan lists). The settings API now gates with requireModulePermission; admins always keep full access.
+- Existing staff-roster reviewers keep working; managers can also be assigned non-admin sub-permissions on the feature-modules page and use a management panel embedded in their own staff page.
+
 selfDirectedLearning v0.0.12 — 2026-10-23
 
 - Student instructions: press Enter for a new paragraph; the text is auto-numbered 1. 2. 3. … on blur and on save (existing numbers are stripped and renumbered; blank lines are kept unnumbered). An "insert template" button fills a short sample.
