@@ -1,3 +1,10 @@
+selfDirectedLearning v0.0.2 — 2026-10-23
+
+- The admin page is renamed to "管理規則" (Management Rules) and the application-window card gains a master switch for the whole module: while it is off, the student / staff / parent pages show only a "currently under maintenance" notice and every write API returns 403 (the admin page keeps working), so data can be maintained safely at any time.
+- Week counting now has two modes: "fill every week of the semester" (default — students must complete every week while the school has no special activity scheduled) or "flexible weeks" with a school-defined minimum (default 6, at least 6 recommended; the semester total stays the cap). Drafts may be saved partially; the week-mode rule and the per-week content / venue requirements are enforced when the plan is submitted.
+- All four role pages now use the host `content-width` (80vw) block width like the role home pages, and every form control (input / select / textarea) is standardised on `rounded px-3 py-2 text-sm`.
+- README and the development plan document the new settings fields (enabled / weekMode / minWeeks).
+
 selfDirectedLearning v0.0.1 — 2026-10-23
 
 - Initial release of the self-directed learning plan module (108 curriculum guideline): students submit a term plan (topic, study group, optional advisor, per-week schedule with venue and flexible-learning / after-school timing) inside the school-configured window; reviewers approve or return it with comments; homeroom teachers browse the whole class; parents view their child's plan.
