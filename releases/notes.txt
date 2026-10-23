@@ -1,3 +1,8 @@
+selfDirectedLearning v0.0.11 — 2026-10-23
+
+- The flexible-learning period schedule is now a grid: columns are school days (from the host timetable settings' school-days checkboxes), rows are periods; ticking a cell saves that day / period immediately.
+- Reviewers are picked from the current-term staff roster (every active staff member is a candidate regardless of attribute). An attribute dropdown and a name search filter the candidate list; manual uid entry is removed.
+
 selfDirectedLearning v0.0.7 — 2026-10-23
 
 - Full-week count is now derived first from the host's class-day start / end (School Settings → Semester start/end), then semester dates, then academic-year dates, using the Taiwan public-sector week convention (Sunday–Saturday; a partial first or last week still counts as one full week), so schools typically get 21 or 22 weeks.
