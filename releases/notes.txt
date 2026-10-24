@@ -1,3 +1,7 @@
+selfDirectedLearning v0.0.31 — 2026-10-25
+
+- Updated the Management Rules note to: administrators are only responsible for the module's rule settings; delegate plan review and management to the designated managers.
+
 selfDirectedLearning v0.0.30 — 2026-10-24
 
 - Renamed the manager permission "查看計畫清單" (view plan list) to "查看、管理計畫清單" (view and manage plan list) in the module manifest, so the feature-modules page shows the new label.
