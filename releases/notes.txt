@@ -1,3 +1,15 @@
+selfDirectedLearning v0.0.33 — 2026-10-25
+
+- The Management Rules instructions are split into two fields: "自主學習實施說明" (general guidance for students and parents) and "自主學習計畫撰寫說明" (writing guidance shown when a student starts a new plan or edits a draft).
+- The student page shows the writing guidance inside the Writing Plan section; the parent page now shows the implementation guidance.
+- The legacy single instructions field is treated as the implementation guidance.
+
+selfDirectedLearning v0.0.32 — 2026-10-25
+
+- The student page is split into "我的計畫" (My Plans) and "撰寫計畫" (Write Plan, hidden by default). My Plans lists formal (approved) and draft plans (not submitted, under review, returned) separately; each plan can be expanded to view its content and review notes.
+- During the open window, if the semester has no formal plan yet, students can start a new plan. Clicking "發起新計畫" or a draft's "編輯" reveals the writing form.
+- Multiple drafts per semester are allowed, but only one formal (approved) plan per semester; the rule is checked when submitting and when approving. Plan document ids now support multiple plans while remaining compatible with legacy ids.
+
 selfDirectedLearning v0.0.31 — 2026-10-25
 
 - Updated the Management Rules note to: administrators are only responsible for the module's rule settings; delegate plan review and management to the designated managers.
