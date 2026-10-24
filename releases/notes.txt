@@ -1,3 +1,10 @@
+selfDirectedLearning v0.0.25 — 2026-10-24
+
+- Removed the selection caps on reviewer classes and individual students (30 / 100). Only high server-side abuse guards remain, and they are not shown in the UI.
+- Read saving now applies to candidate loading, not to how many targets can be selected: class options come from the host school-class settings; student candidates are loaded only for the class the manager selects (up to 60 per class) and cached in memory, never the whole school at once.
+- For school-wide reviewers, leave the class checkbox unchecked (全校); that uses a single plan query instead of one query per class.
+- Also raised the previous 30-class cap to the host class maximum before removing the UI limit, so schools with more than 30 classes can assign all of them.
+
 selfDirectedLearning v0.0.23 — 2026-10-24
 
 - Staff page now uses the same shell as the exam-registration staff page (system header, title with homeroom subtitle, top/bottom action buttons, separators, manager panel placement, ads and copyright).
