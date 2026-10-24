@@ -1,3 +1,7 @@
+selfDirectedLearning v0.0.30 — 2026-10-24
+
+- Renamed the manager permission "查看計畫清單" (view plan list) to "查看、管理計畫清單" (view and manage plan list) in the module manifest, so the feature-modules page shows the new label.
+
 selfDirectedLearning v0.0.29 — 2026-10-24
 
 - The reviewer list is now one line per reviewer: name plus three SVG icon buttons (target list, edit targets, remove). Reviewer ids and the full target list are no longer printed inline.
