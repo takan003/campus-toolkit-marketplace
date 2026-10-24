@@ -1,3 +1,11 @@
+selfDirectedLearning v0.0.18 — 2026-10-24
+
+- Announcement and calendar publishing are now two separate admin-controlled toggles in Management Rules; nothing is sent automatically unless the manager enables it, and existing announcements / events are left untouched when disabled.
+- Both the announcement and calendar audiences now include staff (student, parent, staff).
+- Fixed the inverted same-origin check that rejected legitimate settings saves while allowing cross-origin requests.
+- The student page now uses the same page shell as the exam-registration student page (system header, title, top/bottom action buttons, separators, ads and copyright); the form content is unchanged.
+- Removed imports of the host school-periods / school-spaces types; the module reads the host timetable and floor-space documents itself, so module-check passes for marketplace publishing.
+
 selfDirectedLearning v0.0.13 — 2026-10-23
 
 - Declares managerPermissions (configure = management rules / review = approve or return plans / viewPlans = view plan lists). The settings API now gates with requireModulePermission; admins always keep full access.
