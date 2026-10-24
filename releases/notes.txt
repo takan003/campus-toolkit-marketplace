@@ -1,3 +1,11 @@
+selfDirectedLearning v0.0.23 — 2026-10-24
+
+- Staff page now uses the same shell as the exam-registration staff page (system header, title with homeroom subtitle, top/bottom action buttons, separators, manager panel placement, ads and copyright).
+- The reviewer card now puts the search/add tools above the reviewer list. After adding a reviewer, the manager can assign review targets: tick "指定審查班級" to reveal classes grouped by grade (with per-grade select-all), and optionally tick "另指定個別學生" for exception cases.
+- Read-saving: class scopes query only submitted plans for the selected classes; individual scopes read plan documents by deterministic id; the admin page loads students only when a class is chosen and caches them in memory.
+- The review API re-checks the reviewer scope inside the transaction, so a plan outside the assigned scope cannot be reviewed by plan id. Reviewers without a scope remain school-wide.
+- Saving is blocked when a class/student scope is enabled but nothing is selected, so an empty scope cannot silently fall back to school-wide.
+
 selfDirectedLearning v0.0.18 — 2026-10-24
 
 - Announcement and calendar publishing are now two separate admin-controlled toggles in Management Rules; nothing is sent automatically unless the manager enables it, and existing announcements / events are left untouched when disabled.
