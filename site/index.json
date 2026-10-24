@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T10:30:00.000Z",
+  "generatedAt": "2026-10-24T11:30:00.000Z",
   "marketplaceVersion": "1.0.0",
   "modules": [
     {
@@ -25,12 +25,12 @@
       "id": "selfDirectedLearning",
       "name": "自主學習計畫",
       "description": "108課綱自主學習計畫：學生於學校開放期間填報學期學習方案（主題、學群、指導老師與逐週課程安排，含場地與彈性學習／課餘時段），審核人員可通過或退回並附審查意見，兼導師可瀏覽全班計畫，家長可檢視子女計畫；管理端「管理規則」設定功能總開關（關閉即全站維護中）、開放時間、週數填寫形式（全學期全填／彈性下限，全學期週數由學期起訖自動判斷）、彈性學習節次行程、開放場域與審核名單，並可分別決定是否同步發布系統公告與行事曆（發送對象含學生、家長、教職員）；審核人員可依年級班級指派審查對象，必要時另指定個別學生，候選名單按班級分批載入、佇列以精準查詢載入。",
-      "version": "0.0.25",
-      "latestVersion": "0.0.25",
+      "version": "0.0.29",
+      "latestVersion": "0.0.29",
       "minHostVersion": "0.580",
       "repoUrl": "https://github.com/takan003/selfDirectedLearning",
       "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning.zip",
-      "checksumSha256": "d13c80f65c60e0aca199ecc1bd10e1ad3ba2e044603bb93833d85856f63da476",
+      "checksumSha256": "fa4bdca3e32c23b80288a18275831fe42fdf6cf6049effa52fc8875ed3c3128e",
       "category": "academics",
       "tags": [
         "self-directed-learning",

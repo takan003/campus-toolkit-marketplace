@@ -1,3 +1,10 @@
+selfDirectedLearning v0.0.29 — 2026-10-24
+
+- The reviewer list is now one line per reviewer: name plus three SVG icon buttons (target list, edit targets, remove). Reviewer ids and the full target list are no longer printed inline.
+- The target-list icon opens a themed modal that groups assigned classes by grade and lists individually assigned students; the edit-target icon expands the scope editor below that reviewer only.
+- Removing a reviewer now opens a standard confirmation dialog before the reviewer is deleted.
+- The Management Rules page shows a warning-colored note: administrators are only responsible for the rule settings on this page; assign staff reviewers/managers under "審核人員".
+
 selfDirectedLearning v0.0.25 — 2026-10-24
 
 - Removed the selection caps on reviewer classes and individual students (30 / 100). Only high server-side abuse guards remain, and they are not shown in the UI.
