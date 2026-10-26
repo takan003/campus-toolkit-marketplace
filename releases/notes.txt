@@ -1,3 +1,8 @@
+selfDirectedLearning v0.0.59 — 2026-10-26
+
+- Fixed the "documentPath is not a valid resource path" error when submitting a review: the host Firestore read/write instrumentation turns an argument-less `.doc()` call into `.doc(undefined)`, so review records now use an explicitly generated document id.
+- Plan ids containing "/" are rejected with a friendly "missing plan identifier" message instead of exposing the underlying Firestore path error.
+
 selfDirectedLearning v0.0.58 — 2026-10-26
 
 - 新增必填「學習目標」：所見即所得多行輸入（說明：簡單扼要描述，建議採用條列陳述），送出審核時必填；顯示於學生查看內容、教職員審核卡片、家長檢視與 A4 列印表頭。

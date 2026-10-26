@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T10:45:04.184Z",
+  "generatedAt": "2026-10-26T14:04:38.731Z",
   "marketplaceVersion": "1.0.0",
   "modules": [
     {
@@ -25,12 +25,12 @@
       "id": "selfDirectedLearning",
       "name": "自主學習計畫",
       "description": "108課綱自主學習計畫：學生於學校開放期間填報學期學習方案（主題、教育部 18 學群或自行填寫、指導老師、必填學習目標；學習目標與逐週學習安排皆為所見即所得富文本，逐週表格自動列出彈性學習時間的日期與節次，場地可選學校開放場域或自行填寫，支援一鍵複製到下一週與 A4 列印預覽），送出後可在開放撰寫期間抽回修改；與學校活動衝堂的週次不提供撰寫。我的計畫分為文件匣、草稿匣與垃圾桶（假性刪除可還原）。審核人員可通過或退回，並可分別填寫逐週與整體審查意見（皆為富文本並提供常用罐頭語），兼導師可瀏覽全班計畫，家長可檢視子女計畫與逐週意見。管理端設定功能總開關、開放撰寫起訖、審核起訖（審核頁顯示期限、待審件數、剩餘天數與逾期提醒）、週數形式、彈性節次、開放場域與審核名單，並可分別同步系統公告與行事曆；審核佇列採收合式卡片、每頁 10/20/50/100 筆分頁，並配合主程式省流開關以 count 聚合顯示待審件數；列印輸出只保留紙張內容。",
-      "version": "0.0.58",
-      "latestVersion": "0.0.58",
+      "version": "0.0.59",
+      "latestVersion": "0.0.59",
       "minHostVersion": "0.580",
       "repoUrl": "https://github.com/takan003/selfDirectedLearning",
-      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning-0.0.58.zip",
-      "checksumSha256": "8b4a315022c4cb71d076d0b6b94010c433cff34e94abd6e99b116ab27017520d",
+      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning-0.0.59.zip",
+      "checksumSha256": "31b20bf757f3a7161aecc1b502069a7882e02217ec542a62cca506cca3ef42ca",
       "category": "academics",
       "tags": [
         "self-directed-learning",
