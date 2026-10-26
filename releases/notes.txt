@@ -1,3 +1,14 @@
+selfDirectedLearning v0.0.52 — 2026-10-26
+
+- Student page redesign: card-based sections with clear borders/accent bars; the implementation guide is a card open by default; My Plans has Documents (approved / under review), Drafts (draft / returned) and Trash (soft-deleted, restore) tabs with icons and counts.
+- Plans can be soft-deleted (draft/returned only) and restored; submitted/approved plans cannot be trashed; staff and parent views hide trashed plans.
+- Flexible week mode now selects a start/end week range: only writable weeks are listed, the available-week count is checked against the minimum in real time, start weeks without enough remaining weeks are hidden, and reversed ranges trigger a confirmation before swapping. Admin minimum-week settings are validated against the school-wide writable week count and blocked server-side too.
+- The study group field offers the 18 MOE study groups plus an "Other (type your own)" option; existing custom values are preserved.
+- WYSIWYG upgrades: local font families, text-color palette plus custom picker, text highlight/background-color palette plus custom picker, left/center/right alignment SVG buttons, eraser icon, reliable glyph rendering, and two-direction resizing.
+- The weekly table shows periods on separate lines in a narrower first column; the learning-arrangement and venue fields are merged, with the venue dropdown (or custom venue input) above the editor. The custom venue input sits to the right of the dropdown on wide screens; school venue options remain visible. A down-arrow button copies a week's content and venue to the next writable week.
+- The writing form has larger Save/Submit button sets at both the top and bottom; two floating SVG actions on the left offer quick save and an A4 print preview in a new tab (including unsaved edits) with a print stylesheet that repeats the table header and avoids splitting week rows.
+- Whitelist HTML sanitization now also allows safe background colors; visible text remains limited to 600 characters and sanitized HTML to 6000 characters at a tag boundary.
+
 selfDirectedLearning v0.0.43 — 2026-10-26
 
 - The weekly schedule is now a table: every week automatically resolves the flexible-learning date and periods from the semester window and the admin period schedule. Weeks that clash with a calendar school activity (school-wide / grade / class) are still listed, but show the activity name, cannot be edited, and are excluded from the submit-required check.
