@@ -1,3 +1,14 @@
+selfDirectedLearning v0.0.58 — 2026-10-26
+
+- 新增必填「學習目標」：所見即所得多行輸入（說明：簡單扼要描述，建議採用條列陳述），送出審核時必填；顯示於學生查看內容、教職員審核卡片、家長檢視與 A4 列印表頭。
+- 所有多行文字輸入改為所見即所得編輯器：管理端「自主學習實施說明／撰寫說明」、教職員「逐週意見／整體意見」。
+- 教職員審核佇列：卡片以「班號 姓名」顯示、每個計畫條目統一框線；展開後先顯示學習目標，逐週安排以表格呈現，每週可填寫逐週意見；逐週與整體意見各提供 5 種常用罐頭語。
+- 管理端新增「審核期限」起訖（與審核人員卡片相鄰）；審核頁顯示期限、待審件數、剩餘／逾期天數與每筆已等待天數。
+- 學生可在開放撰寫期間抽回審核中的計畫（警告色按鈕＋確認視窗），抽回後回草稿匣修改再送出。
+- 審核佇列收合式摘要卡片＋每頁 10/20/50/100 筆分頁；配合主程式省流開關以 count 聚合顯示待審件數，按下「顯示審核列表」才載入計畫。
+- 學生／家長可看到審核人員填寫的逐週意見；公告／行事曆同步會把富文本說明轉為純文字。
+- 列印輸出只保留紙張內容：按鈕、浮動圖示與陰影（含瀏覽器擴充套件注入的面板）不會被帶進 PDF。
+
 selfDirectedLearning v0.0.52 — 2026-10-26
 
 - Student page redesign: card-based sections with clear borders/accent bars; the implementation guide is a card open by default; My Plans has Documents (approved / under review), Drafts (draft / returned) and Trash (soft-deleted, restore) tabs with icons and counts.
