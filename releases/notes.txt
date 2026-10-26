@@ -1,3 +1,15 @@
+selfDirectedLearning v0.0.43 — 2026-10-26
+
+- The weekly schedule is now a table: every week automatically resolves the flexible-learning date and periods from the semester window and the admin period schedule. Weeks that clash with a calendar school activity (school-wide / grade / class) are still listed, but show the activity name, cannot be edited, and are excluded from the submit-required check.
+- The "week / date / periods" columns are merged into one column; the timing column is removed (after-school arrangements are handled separately).
+- Venue handling follows admin settings: the venue list is a fixed set of choices, and the "allow students to enter their own venue" toggle controls whether a venue outside the list can be typed. When disabled, students choose from a dropdown and the server validates the venue.
+- The learning-arrangement field is now a zero-dependency WYSIWYG editor: undo/redo, font family (including common Windows/macOS Chinese fonts), size, bold/italic/underline/strikethrough, text color, alignment, ordered/unordered lists, indent/outdent, blockquote, clear formatting (eraser), placeholder and a 600-character counter. The toolbar sits below the editor; corners are square; the editor resizes in both directions.
+- Rich text is sanitized by a whitelist TypeScript sanitizer (safe tags/attributes/styles; script, iframe, event handlers, javascript: and url() are removed). Visible text is limited to 600 characters; sanitized HTML is capped at 6000 characters at a tag boundary. Legacy plain-text content remains compatible and keeps its line breaks.
+- Both the student "My Plans" view and the staff / parent weekly views render the same rich text (lists, blockquote, colors and font sizes) correctly under the Tailwind reset.
+- The writing page adds a floating printer icon on the left edge. It opens a new tab showing the current draft (including unsaved edits) in an A4 print layout with a print button. Data is passed by same-origin postMessage and is not written to the database.
+- Management Rules now include the venue-input toggle; the weekly-table instructions were simplified to three numbered points.
+- Toolbar glyphs (italic I, strikethrough S, erase) render reliably via inline styles, and local font names with Chinese characters are accepted by the sanitizer.
+
 selfDirectedLearning v0.0.33 — 2026-10-25
 
 - The Management Rules instructions are split into two fields: "自主學習實施說明" (general guidance for students and parents) and "自主學習計畫撰寫說明" (writing guidance shown when a student starts a new plan or edits a draft).
