@@ -13,8 +13,8 @@
   "author": {
     "author": "takan003",
     "authorUrl": "https://github.com/takan003",
-    "version": "0.0.59",
-    "releasedAt": "2026-10-26"
+    "version": "0.0.65",
+    "releasedAt": "2026-10-27"
   },
   "provides": { "student": true, "parent": true, "staff": true, "admin": true },
   "managerPermissions": [
@@ -54,10 +54,57 @@
   "dataCollections": [
     "selfDirectedLearningSettings",
     "selfDirectedLearningPlans",
-    "selfDirectedLearningReviews"
+    "selfDirectedLearningReviews",
+    "selfDirectedLearningLocks"
   ],
   "hooks": ["announcements", "calendar"],
   "changelog": [
+    {
+      "version": "0.0.65",
+      "releasedAt": "2026-10-27",
+      "notes": [
+        "送出審核一律歸為本學期的計畫：舊學期的草稿送出時寫入目前學期（此前會沿用草稿建立時的學期，導致教職員審核佇列看不到、學生卡在審核中）",
+        "新增「學生＋學期」鎖定文件（selfDirectedLearningLocks，doc id＝`<學期>_<uid>`）：送出審核、抽回、通過／退回都在交易內讀寫同一份鎖定文件，杜絕兩分頁同時送審、兩位審核者同時通過的競態",
+        "「僅一件審核中」「僅一件通過」改以目前學期檢核，並保留既有計畫掃描以相容沒有鎖定文件的舊資料"
+      ]
+    },
+    {
+      "version": "0.0.64",
+      "releasedAt": "2026-10-27",
+      "notes": [
+        "補強「同一學期僅能送審一件」規則：先前只檢查正式計畫（每學期一份），未擋下同時有兩件審核中；現在送出審核時會檢查同學期是否已有另一件審核中的計畫，有則回 409「本學期已有計畫在審核中，請等待審查結果或先抽回該計畫後再送出」",
+        "學生端「送出審核」按鈕在有計畫審核中、或本學期已有通過的正式計畫時停用，並在表單上方以警示色說明原因；多筆草稿仍可自由新增與編輯"
+      ]
+    },
+    {
+      "version": "0.0.63",
+      "releasedAt": "2026-10-27",
+      "notes": [
+        "修正逐週表格表頭置中無效：主程式 globals.css 的 th 規則未包 @layer，優先於 Tailwind 的 text-center 工具類，改用行內 text-align 讓「週次／學習安排／場地」確實水平置中"
+      ]
+    },
+    {
+      "version": "0.0.62",
+      "releasedAt": "2026-10-27",
+      "notes": [
+        "水平置中只套用在表頭標題「週次／學習安排／場地」；逐週表格的週次欄維持垂直置中、水平仍靠左對齊"
+      ]
+    },
+    {
+      "version": "0.0.61",
+      "releasedAt": "2026-10-27",
+      "notes": [
+        "教職員審核的逐週表格：表頭「週次／學習安排／場地」改為水平置中；週次欄改為上下垂直置中，並新增該週的日期與節次（各一行）",
+        "週次欄的日期與節次由學期起訖、管理端勾選的節次行程與課表作息推算，與班級無關，整份清單共用一次計算（不增加資料庫讀取）"
+      ]
+    },
+    {
+      "version": "0.0.60",
+      "releasedAt": "2026-10-27",
+      "notes": [
+        "教職員管理面板（被指派管理權限的教職員）不再顯示「管理員僅負責功能的規則設定，計畫審核、管理等請授權給指定的管理人員」提示；該提示僅對（超級）管理員顯示"
+      ]
+    },
     {
       "version": "0.0.59",
       "releasedAt": "2026-10-26",
