@@ -1,3 +1,11 @@
+selfDirectedLearning v0.0.77 — 2026-10-28
+
+- Execution records (執行成果紀錄): after a plan is approved, students can fill in a per-week record of what they actually did. Each week unlocks only after that week's planned time has passed (the end of its last period).
+- The week record area sits under each week row, is collapsed by default per week, and can be expanded for all weeks at once; a full WYSIWYG editor is used for the content.
+- Learning reflection (學習反思心得) opens after the last planned week ends (e.g. week 7 of a 6-week plan).
+- Admins can set a results writing deadline with date and time; when unset there is no deadline. Server-side checks enforce approved status, current semester, unlocked week and the deadline.
+- New "預覽列印（計畫與成果）" print preview: A4 layout of the plan, per-week execution records and the reflection.
+- Review comments shown to students and parents are titled "學校審查意見回饋" without the reviewer's name; the plan detail section is renamed "查看計畫與撰寫成果".
 selfDirectedLearning v0.0.65 — 2026-10-27
 
 - Submissions are always recorded as the current semester plan: an older draft submitted now becomes a current-semester plan, so the staff review queue sees it instead of the student getting stuck in "under review".
