@@ -1,3 +1,9 @@
+selfDirectedLearning v0.0.99 — 2026-10-28
+
+- Reviewer view now lists submitted plans only. Approved, returned and draft plans are hidden, and the reviewer's class-list tab was removed. Homeroom teachers without review permission can still browse their class plans.
+- The three-year threshold is now minimum self-directed learning hours (0–99, default 18) instead of a plan count, with the 18-hour curriculum guideline note. The setting is admin-only for now.
+- The student and parent target displays and their visibility toggles were removed because there is no actual hour verification yet; showing a static target was misleading.
+- Admin layout: the hours setting sits directly below the master switch and uses the theme danger accent.
 selfDirectedLearning v0.0.91 — 2026-10-28
 
 - Draft brainstorming is now unrestricted: students can create, edit and save drafts at any time, regardless of the open writing window or an existing formal plan.
