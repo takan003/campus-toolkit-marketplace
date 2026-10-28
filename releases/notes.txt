@@ -1,3 +1,9 @@
+selfDirectedLearning v0.0.86 — 2026-10-28
+
+- Print preview adds separate/integrated layouts beside the preview button. Separate keeps execution records in a table below the plan; integrated places each week's record inside that week's learning arrangement, spanning the learning-arrangement and venue columns with a solid-bordered, shaded title row.
+- The print preview week column matches the plan table: week number, timing (flexible learning / after school), date and periods; the separated results table now shows the same details.
+- Print table headers and week cells are centered horizontally and vertically; header backgrounds were adjusted (record title lighter, other headers darker).
+- Fixed the rich text editor placeholder staying visible over list bullets when a bulleted or numbered list was started on empty content.
 selfDirectedLearning v0.0.77 — 2026-10-28
 
 - Execution records (執行成果紀錄): after a plan is approved, students can fill in a per-week record of what they actually did. Each week unlocks only after that week's planned time has passed (the end of its last period).
