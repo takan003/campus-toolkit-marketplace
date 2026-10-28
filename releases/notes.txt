@@ -1,3 +1,10 @@
+selfDirectedLearning v0.0.91 — 2026-10-28
+
+- Draft brainstorming is now unrestricted: students can create, edit and save drafts at any time, regardless of the open writing window or an existing formal plan.
+- Administrators can set the draft-box limit (1–100, default 20, including returned plans). Reaching the limit disables new drafts but still allows editing existing ones.
+- The trash now supports permanent deletion after a confirmation dialog. It removes the plan together with its review records and any submission lock, and logs the new audit action.
+- Students can promote a current-semester plan to formal from draft, submitted or returned status, then start writing execution records on the normal weekly schedule without waiting for school approval. Multiple self-promoted formal plans are allowed; submission remains limited to one per semester and school approval to one formal plan per semester. Review is retained, and returning a plan does not remove its formal status.
+- New Management Rules setting: minimum review plans over three years (0–6, 0 = not set). This release stores and validates the setting only; student progress and enforcement remain for a later step.
 selfDirectedLearning v0.0.86 — 2026-10-28
 
 - Print preview adds separate/integrated layouts beside the preview button. Separate keeps execution records in a table below the plan; integrated places each week's record inside that week's learning arrangement, spanning the learning-arrangement and venue columns with a solid-bordered, shaded title row.
