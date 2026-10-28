@@ -1,3 +1,6 @@
+selfDirectedLearning v0.0.100 — 2026-10-28
+
+- Documentation only: README now includes a short maintenance / issue-reporting note and the version label is up to date. No functional or code changes in this release.
 selfDirectedLearning v0.0.99 — 2026-10-28
 
 - Reviewer view now lists submitted plans only. Approved, returned and draft plans are hidden, and the reviewer's class-list tab was removed. Homeroom teachers without review permission can still browse their class plans.

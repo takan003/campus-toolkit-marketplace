@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T06:07:35.521Z",
+  "generatedAt": "2026-10-28T14:11:50.820Z",
   "marketplaceVersion": "1.0.0",
   "modules": [
     {
@@ -25,12 +25,12 @@
       "id": "selfDirectedLearning",
       "name": "自主學習計畫",
       "description": "108課綱自主學習計畫：學生於學校開放期間填報學期學習方案（主題、教育部 18 學群或自行填寫、指導老師、必填學習目標；學習目標與逐週學習安排皆為所見即所得富文本，逐週表格自動列出彈性學習時間的日期與節次，場地可選學校開放場域或自行填寫，支援一鍵複製到下一週與 A4 列印預覽），送出後可在開放撰寫期間抽回修改；與學校活動衝堂的週次不提供撰寫。我的計畫分為文件匣、草稿匣與垃圾桶（假性刪除可還原）。審核人員可通過或退回，並可分別填寫逐週與整體審查意見（皆為富文本並提供常用罐頭語），審核人員僅顯示送審中計畫，兼導師（非審核人員）可瀏覽全班計畫，家長可檢視子女計畫與逐週意見。管理端設定功能總開關、開放撰寫起訖、審核起訖（審核頁顯示期限、待審件數、剩餘天數與逾期提醒）、週數形式、彈性節次、開放場域與審核名單，並可分別同步系統公告與行事曆；審核佇列採收合式卡片、每頁 10/20/50/100 筆分頁，並配合主程式省流開關以 count 聚合顯示待審件數；列印輸出只保留紙張內容。教職員審核的逐週表格表頭置中、週次欄並顯示該週日期與節次；同一學期可保留多筆草稿，但同時僅能有一件審核中、學校審核通過的計畫僅一件（送出審核一律歸為本學期，並以「學生＋學期」鎖定文件避免同時送審）。計畫通過後可逐週填寫執行成果紀錄（該週規劃時間過了才開放、可單週收合）與學習反思心得，開放到管理端設定的成果撰寫截止時間（可到時與分），並可預覽列印計畫與成果。列印預覽可選擇「分開式」或「融入式」，週次欄顯示時段、日期與節次且置中對齊。草稿可隨時發想，管理端可設定草稿匣件數上限與高中三年最低自主學習時數（0–99 小時；目前僅管理端設定，不顯示於學生／家長端）；學生可自行把本學期計畫提升為正式（可多份，學校審核仍保留），垃圾桶支援永久刪除。",
-      "version": "0.0.99",
-      "latestVersion": "0.0.99",
+      "version": "0.0.100",
+      "latestVersion": "0.0.100",
       "minHostVersion": "0.580",
       "repoUrl": "https://github.com/takan003/selfDirectedLearning",
-      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning-0.0.99.zip",
-      "checksumSha256": "e46aff56511629bd57b90cfe9bf8a7a3f6bf955b725bf2180fb8a81ef787a38e",
+      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning-0.0.100.zip",
+      "checksumSha256": "70ec78d6127dca31091dbac467258f2e577ffeb5332b3f5da7e05a8906a6f22e",
       "category": "academics",
       "tags": [
         "self-directed-learning",
