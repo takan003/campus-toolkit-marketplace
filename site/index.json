@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T00:10:52.000Z",
+  "generatedAt": "2026-10-29T00:18:29.429Z",
   "marketplaceVersion": "1.0.0",
   "modules": [
     {
@@ -30,7 +30,7 @@
       "minHostVersion": "0.580",
       "repoUrl": "https://github.com/takan003/selfDirectedLearning",
       "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning-0.0.106.zip",
-      "checksumSha256": "59401b3b15b42eec431b708ca82608e4d39a387953867a0cf2b2f8d7fdf8efcd",
+      "checksumSha256": "a6f9497a01a0507cfbea7b4cfd47f9eeb1a27311df2dea62a53a4ebdf45635d4",
       "category": "academics",
       "tags": [
         "self-directed-learning",
