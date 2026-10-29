@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T01:28:46.979Z",
+  "generatedAt": "2026-10-29T08:46:37.979Z",
   "marketplaceVersion": "1.0.0",
   "modules": [
     {
@@ -25,12 +25,12 @@
       "id": "selfDirectedLearning",
       "name": "自主學習計畫",
       "description": "108 課綱自主學習計畫：從草稿、送審、審核到成果反思的完整流程。\n\n【學生端】\n• 學期中可隨時建立、編輯草稿；草稿匣與文件匣容量由學校設定（預設各 20 份）。\n• 可將草稿、審核中或退回的計畫提升為正式；自主提升可多份，學校審核通過每學期 1 份。\n• 填寫主題、18 學群或自訂、指導老師、學習目標與逐週安排；支援富文本、自動帶入彈性學習日期節次、場地選擇、複製上一週與 A4 列印。\n• 送審期間內送出審核；每學期僅能送審 1 份（可重送同一份），可抽回修改。\n• 正式計畫可逐週填寫執行成果與學習反思；學校通過者受成果截止時間限制，自主提升者不受限。\n• 文件匣、草稿匣與垃圾桶；垃圾桶超過 30 天自動永久刪除。\n\n【審核與檢視】\n• 審核人員僅看到送審中計畫，可逐週與整體填寫審查意見（富文本、常用語），並通過或退回。\n• 兼導師可瀏覽全班計畫；家長可檢視子女計畫與逐週意見。\n\n【管理端】\n• 功能總開關、送審起訖、審核起訖、週數形式、下限週數、彈性節次、開放場域與審核名單。\n• 文件匣／草稿匣容量、就學期間最低通過份數、成果撰寫截止時間（僅學校通過計畫）。\n• 儲存設定可同步系統公告與行事曆；審核佇列支援收合卡片、10/20/50/100 筆分頁與省流 count 顯示。",
-      "version": "0.0.107",
-      "latestVersion": "0.0.107",
+      "version": "0.0.113",
+      "latestVersion": "0.0.113",
       "minHostVersion": "0.580",
       "repoUrl": "https://github.com/takan003/selfDirectedLearning",
-      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning-0.0.107.zip",
-      "checksumSha256": "f520c2aca54e6791420703f2981581d97ef895846afd8c823251acea66f63ae9",
+      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning-0.0.113.zip",
+      "checksumSha256": "a91db1ad6bb6938477e4d9c7fe8cbe41a701dbf87683a4df121ce4bda9b7325d",
       "category": "academics",
       "tags": [
         "self-directed-learning",
@@ -39,9 +39,7 @@
         "print"
       ],
       "releaseNotes": [
-        "開放撰寫改為送審期間：草稿與正式計畫在學期中可隨時建立、編輯，只有送出審核受送審期間限制",
-        "文件匣（審核中＋已通過＋自主提升）與草稿匣容量改由學校設定（預設 20／20，無硬上限）；仍維持每學期送審 1 份、學校審核通過 1 份，自主提升可多份",
-        "成果／反思截止時間只適用學校審核通過的計畫；學生進入頁面時自動永久刪除 30 天前垃圾桶計畫"
+        "調整學生端分頁下方說明文字為「文件匣、草稿匣的可保存份數為 文件匣 N 份、草稿匣 N 份；垃圾桶最多保留 30 天，逾期自動刪除。」"
       ]
     }
   ]
