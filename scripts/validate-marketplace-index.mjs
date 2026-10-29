@@ -60,6 +60,16 @@ function assertEntryShape(entry, indexName) {
   if (!Array.isArray(entry.tags) || entry.tags.length === 0 || entry.tags.some((tag) => typeof tag !== "string")) {
     fail(`${indexName} 欄位 modules[].tags 必須為非空字串陣列`);
   }
+  if ("releaseNotes" in entry) {
+    if (
+      !Array.isArray(entry.releaseNotes) ||
+      entry.releaseNotes.length === 0 ||
+      entry.releaseNotes.length > 3 ||
+      entry.releaseNotes.some((note) => typeof note !== "string" || note.trim().length === 0)
+    ) {
+      fail(`${indexName} 欄位 modules[].releaseNotes 必須為 1–3 點非空字串陣列`);
+    }
+  }
   assertSemver(entry.version, `${indexName} modules[].version`);
   assertSemver(entry.latestVersion, `${indexName} modules[].latestVersion`);
   assertSemver(entry.minHostVersion, `${indexName} modules[].minHostVersion`);

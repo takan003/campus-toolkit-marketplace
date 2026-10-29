@@ -1,0 +1,13 @@
+{
+  "name": "campus-toolkit-marketplace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "校園工具箱功能模組市集：模組索引、發布包與市集網站。",
+  "scripts": {
+    "publish": "node scripts/publish-module.mjs",
+    "publish:push": "node scripts/publish-module.mjs --push",
+    "publish:dry": "node scripts/publish-module.mjs --skip-commit",
+    "validate": "node scripts/validate-marketplace-index.mjs",
+    "check:docs": "node scripts/check-site-docs.cjs"
+  }
+}
