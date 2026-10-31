@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T09:10:22.115Z",
+  "generatedAt": "2026-10-31T02:30:54.766Z",
   "marketplaceVersion": "1.0.0",
   "modules": [
     {
@@ -29,12 +29,12 @@
       "id": "selfDirectedLearning",
       "name": "自主學習計畫",
       "description": "108 課綱自主學習計畫：從草稿、送審、審核到成果反思的完整流程。\n\n【學生端】\n• 學期中可隨時建立、編輯草稿；草稿匣與文件匣容量由學校設定（預設各 20 份）。\n• 可將草稿、審核中或退回的計畫提升為正式；自主提升可多份，學校審核通過每學期 1 份。\n• 填寫主題、18 學群或自訂、指導老師、學習目標與逐週安排；支援富文本、自動帶入彈性學習日期節次、場地選擇、複製上一週與 A4 列印。\n• 送審期間內送出審核；每學期僅能送審 1 份（可重送同一份），可抽回修改。\n• 正式計畫可逐週填寫執行成果與學習反思；學校通過者受成果截止時間限制，自主提升者不受限。\n• 文件匣、草稿匣與垃圾桶；垃圾桶超過 30 天自動永久刪除。\n\n【審核與檢視】\n• 審核人員僅看到送審中計畫，可逐週與整體填寫審查意見（富文本、常用語），並通過或退回。\n• 兼導師可瀏覽全班計畫；家長可檢視子女計畫與逐週意見。\n\n【管理端】\n• 功能總開關、送審起訖、審核起訖、週數形式、下限週數、彈性節次、開放場域與審核名單。\n• 文件匣／草稿匣容量、就學期間最低通過份數、成果撰寫截止時間（僅學校通過計畫）。\n• 儲存設定可同步系統公告與行事曆；審核佇列支援收合卡片、10/20/50/100 筆分頁與省流 count 顯示。",
-      "version": "0.0.118",
-      "latestVersion": "0.0.118",
+      "version": "0.0.119",
+      "latestVersion": "0.0.119",
       "minHostVersion": "0.580",
       "repoUrl": "https://github.com/takan003/selfDirectedLearning",
-      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning-0.0.118.zip",
-      "checksumSha256": "a1d2909096debbfabc3da4c38fdb6f76bdbfe0eae338623dcff6a00deeb9bceb",
+      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/selfDirectedLearning-0.0.119.zip",
+      "checksumSha256": "f7e3a2ca56802a8434c75fe7a64e26068cf53845f5a18f45be4cc3fc4578b01d",
       "category": "academics",
       "tags": [
         "self-directed-learning",
@@ -43,9 +43,8 @@
         "print"
       ],
       "releaseNotes": [
-        "新增「家長檢視」開關：學生的每一份正式計畫（學校通過或自行提升）都可自行決定是否讓家長看到，學生端計畫卡片提供「隱藏家長檢視／開放家長檢視」按鈕，並在隱藏時顯示「家長不可見」標記",
-        "家長端只會顯示學生開放的計畫；若子女有計畫但全部設為不開放，改為提示「子女目前未將自主學習計畫開放給家長檢視」",
-        "計畫新增 `parentVisible` 欄位（預設 true，舊資料視為開放），並新增稽核動作 `self_directed_learning_plan_parent_visibility_changed`"
+        "家長端自主學習頁面改與學生端相同版型：加入系統名稱／學校／學期抬頭、頁首頁尾的返回功能首頁與登出按鈕、實施說明卡片、廣告與版權區",
+        "計畫內容改用一致的卡片樣式，「查看計畫與撰寫成果」改為收合區並以週次／學習安排／場地表格呈現，審查意見與維護、未開放檢視等空狀態同步套用相同樣式"
       ]
     },
     {
