@@ -1,5 +1,3 @@
-selfDirectedLearning v0.0.128（2026-11-02）
+selfDirectedLearning v0.0.129（2026-11-02）
 
-- Google Docs 新增四種文件風格與簡短錯誤提示；完成 Word（.docx）下載，支援未儲存內容及兩種成果排版，下載請求統一驗證開關，連線失敗可手動重試。
-- 管理規則新增 Google Docs、Canva、Word 獨立開關，全部預設關閉，並提供平台啟用說明；新增 Canva OAuth／PKCE 與文件匯入流程，但實際授權仍待 Canva 無效 Client ID 問題排除。
-- 57 項合成回歸測試、Lint、型別檢查與模組掃描通過；Word 使用者端下載及 Canva 實際授權／匯入尚待驗收，建議維持關閉至學校完成測試。
+- 移除管理規則頁的「上線驗收與資料注意事項」說明區塊，保留 Google Docs／Canva 設定說明、服務開關與學生端資料傳送同意流程。
