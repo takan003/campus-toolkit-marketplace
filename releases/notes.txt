@@ -1,3 +1,4 @@
-selfDirectedLearning v0.0.147（2026-11-04）
+selfDirectedLearning v0.0.148（2026-11-06）
 
-- 將學生端文件匯出確認視窗調整為 80vw，移除原本的寬度上限。
+- 學校設定改走主程式唯讀公開面（module-host-data／readSystemDoc），不再直接存取 settings 集合。
+- 文件匯出測試補上新的宿主公開面 mock。
