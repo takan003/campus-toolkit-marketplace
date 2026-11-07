@@ -74,6 +74,12 @@ function assertEntryShape(entry, indexName) {
   if (!["official", "reviewed", "experimental"].includes(entry.status)) {
     fail(`${indexName} modules[].status 需為 official／reviewed／experimental`);
   }
+  if (entry.status === "reviewed" && (!entry.signature || !entry.publicKey)) {
+    // B+ 過渡期：先警告，簽章綁定流程落地後再升為 fail。
+    console.warn(
+      `${indexName} modules[].status=reviewed 尚未提供 signature／publicKey（B+ 下一階段強制）`
+    );
+  }
   assertSemver(entry.version, `${indexName} modules[].version`);
   assertSemver(entry.latestVersion, `${indexName} modules[].latestVersion`);
   assertSemver(entry.minHostVersion, `${indexName} modules[].minHostVersion`);

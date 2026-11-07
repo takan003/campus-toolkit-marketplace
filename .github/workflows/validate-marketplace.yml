@@ -30,5 +30,11 @@ jobs:
         with:
           node-version: 20
 
+      - name: Fork PRs may only submit experimental
+        if: github.event_name == 'pull_request'
+        env:
+          HEAD_REPO_FORK: ${{ github.event.pull_request.head.repo.fork }}
+        run: node scripts/check-submission-status.mjs
+
       - name: Validate index and releases
         run: node scripts/validate-marketplace-index.mjs

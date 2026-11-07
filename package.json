@@ -7,6 +7,7 @@
     "publish": "node scripts/publish-module.mjs",
     "publish:push": "node scripts/publish-module.mjs --push",
     "publish:dry": "node scripts/publish-module.mjs --skip-commit",
+    "submit": "node scripts/publish-module.mjs --skip-commit --status experimental",
     "validate": "node scripts/validate-marketplace-index.mjs",
     "check:docs": "node scripts/check-site-docs.cjs"
   }
