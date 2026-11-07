@@ -23,7 +23,10 @@ The host app reads the marketplace index and installs modules from the listed do
 ```text
 campus-toolkit-marketplace/
 ├─ index.json
+├─ keys.json
 ├─ README.md
+├─ docs/
+│  └─ 投稿與審核流程.md
 ├─ modules/
 │  └─ examRegistration/
 │     └─ module.json
@@ -49,11 +52,14 @@ Each `index.json` entry includes:
 - `checksumSha256`
 - `category`
 - `tags`
+- `signature`／`publicKey`（`reviewed` 必填；ed25519 簽 zip sha256）
 
 ## Security
 
 - download URL must be trusted
 - checksum must be validated before install
+- `reviewed` must carry a valid ed25519 signature
+- `publicKey` must match an active key in `keys.json` for the same author
 - host version must satisfy `minHostVersion`
 - only HTTPS URLs are recommended for production
 
@@ -66,6 +72,7 @@ Before merging marketplace changes, make sure every module release passes all ch
 3. `version`, `latestVersion`, `minHostVersion` are valid semver (`x.y.z`).
 4. `checksumSha256` is lowercase 64-hex and matches the actual zip digest.
 5. `modules/<moduleId>/module.json` stays consistent with `index.json` (`value`, `author.version`, `minHostVersion`).
+6. If `status=reviewed`, `signature` and `publicKey` are present, the key is active in `keys.json`, and the signature verifies the zip digest.
 
 Validation is enforced by CI workflow:
 

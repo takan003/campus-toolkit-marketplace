@@ -96,6 +96,7 @@ function parseArgs(argv) {
     category: null,
     tags: null,
     status: null,
+    signKey: null,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -106,10 +107,11 @@ function parseArgs(argv) {
     else if (arg === "--category") options.category = argv[++i] ?? null;
     else if (arg === "--tags") options.tags = argv[++i] ?? null;
     else if (arg === "--status") options.status = argv[++i] ?? null;
+    else if (arg === "--sign-key") options.signKey = argv[++i] ?? null;
     else if (arg === "--help" || arg === "-h") {
       console.log(
         [
-          "用法：npm run publish -- <模組 repo 路徑> [--push] [--skip-commit] [--skip-validate] [--category 類別] [--tags a,b] [--status official|reviewed|experimental]",
+          "用法：npm run publish -- <模組 repo 路徑> [--push] [--skip-commit] [--skip-validate] [--category 類別] [--tags a,b] [--status official|reviewed|experimental] [--sign-key <ed25519私鑰檔>]",
           "",
           "自動完成：壓縮 release、複製 module.json、更新 index/site、產生 notes.txt、驗證。",
         ].join("\n")
@@ -224,12 +226,25 @@ if (zipSize > MAX_ZIP_BYTES) {
 }
 const checksumSha256 = sha256File(zipPath);
 
+let signature;
+let publicKey;
+if (options.signKey) {
+  if (!fs.existsSync(options.signKey)) fail(`簽章私鑰不存在：${options.signKey}`);
+  const privateKey = crypto.createPrivateKey(fs.readFileSync(options.signKey));
+  signature = crypto.sign(null, Buffer.from(checksumSha256, "hex"), privateKey).toString("base64");
+  publicKey = crypto.createPublicKey(privateKey).export({ type: "spki", format: "der" }).toString("base64");
+}
+if (status === "reviewed" && !signature && !existing?.signature) {
+  fail("status=reviewed 需 --sign-key（或 index 已有 signature/publicKey）");
+}
+
 const manifestDest = path.join(ROOT, "modules", id, "module.json");
 fs.mkdirSync(path.dirname(manifestDest), { recursive: true });
 fs.copyFileSync(manifestPath, manifestDest);
 
 const entry = {
   ...(existing ?? {}),
+  ...(signature && publicKey ? { signature, publicKey } : {}),
   id,
   name,
   description,

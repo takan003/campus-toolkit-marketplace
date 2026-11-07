@@ -74,12 +74,6 @@ function assertEntryShape(entry, indexName) {
   if (!["official", "reviewed", "experimental"].includes(entry.status)) {
     fail(`${indexName} modules[].status 需為 official／reviewed／experimental`);
   }
-  if (entry.status === "reviewed" && (!entry.signature || !entry.publicKey)) {
-    // B+ 過渡期：先警告，簽章綁定流程落地後再升為 fail。
-    console.warn(
-      `${indexName} modules[].status=reviewed 尚未提供 signature／publicKey（B+ 下一階段強制）`
-    );
-  }
   assertSemver(entry.version, `${indexName} modules[].version`);
   assertSemver(entry.latestVersion, `${indexName} modules[].latestVersion`);
   assertSemver(entry.minHostVersion, `${indexName} modules[].minHostVersion`);
@@ -168,6 +162,72 @@ function hasRequiredDirectory(entries, requiredDir) {
   });
 }
 
+/** C 的作者公鑰信任清單（keys.json） */
+function loadTrustedKeys() {
+  const data = readJson("keys.json");
+  if (!Array.isArray(data.keys)) return [];
+  return data.keys.filter(
+    (item) =>
+      item &&
+      typeof item.author === "string" &&
+      typeof item.publicKey === "string" &&
+      typeof item.status === "string"
+  );
+}
+
+/**
+ * reviewed 必須有簽章；有簽章時驗證：
+ *   1. 公鑰必須在 keys.json 且作者相符、狀態非 revoked
+ *   2. publicKey 必須是釘選公鑰
+ *   3. 簽章必須對當前 release zip 的 sha256 成立
+ */
+function verifyEntrySignature(entry, manifest, digest) {
+  const hasSignature = Boolean(entry.signature && entry.publicKey);
+  if (entry.status === "reviewed" && !hasSignature) {
+    fail(`${entry.id} status=reviewed 需提供 signature 與 publicKey`);
+    return;
+  }
+  if (!hasSignature) return;
+
+  const author = manifest && manifest.author && typeof manifest.author.author === "string" ? manifest.author.author : "";
+  const trusted = loadTrustedKeys().filter(
+    (key) => key.author === author && key.status !== "revoked"
+  );
+  if (trusted.length === 0) {
+    fail(`${entry.id}：作者「${author}」沒有 C 的 active 公鑰，或公鑰已被撤銷`);
+    return;
+  }
+
+  const pinned = trusted.some((key) => {
+    try {
+      return Buffer.from(key.publicKey, "base64").equals(Buffer.from(entry.publicKey, "base64"));
+    } catch {
+      return false;
+    }
+  });
+  if (!pinned) {
+    fail(`${entry.id}：publicKey 不在 C 的作者公鑰信任清單`);
+    return;
+  }
+
+  try {
+    const key = crypto.createPublicKey({
+      key: Buffer.from(entry.publicKey, "base64"),
+      format: "der",
+      type: "spki",
+    });
+    const valid = crypto.verify(
+      null,
+      Buffer.from(digest, "hex"),
+      key,
+      Buffer.from(entry.signature, "base64")
+    );
+    if (!valid) fail(`${entry.id}：簽章驗證失敗（zip 與簽章不符）`);
+  } catch {
+    fail(`${entry.id}：簽章或公鑰格式錯誤`);
+  }
+}
+
 async function validate() {
   const rootIndex = readJson("index.json");
   const siteIndex = readJson("site/index.json");
@@ -219,6 +279,7 @@ async function validate() {
     if (digest !== entry.checksumSha256) {
       fail(`checksumSha256 不一致：${entry.id}`);
     }
+    verifyEntrySignature(entry, manifest, digest);
 
     const entries = listZipEntries(localRelease);
     for (const required of REQUIRED_PACKAGE_PATHS) {
