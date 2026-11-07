@@ -98,4 +98,3 @@ status check so a broken `index.json` or `releases/*.zip` cannot reach `main`.
 ## License
 
 [MIT](LICENSE)
-
