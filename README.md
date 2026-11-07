@@ -1,5 +1,7 @@
 # campus-toolkit marketplace
 
+[![Validate marketplace index](https://github.com/takan003/campus-toolkit-marketplace/actions/workflows/validate-marketplace.yml/badge.svg)](https://github.com/takan003/campus-toolkit-marketplace/actions/workflows/validate-marketplace.yml)
+
 This repository is the external module marketplace for the `campus-toolkit` host app.
 
 It provides:
@@ -63,6 +65,9 @@ Each `index.json` entry includes:
 - host version must satisfy `minHostVersion`
 - only HTTPS URLs are recommended for production
 
+For vulnerability reporting, see [`SECURITY.md`](SECURITY.md).
+Do not open a public issue with reproducible attack details.
+
 ## Publishing checklist (required)
 
 Before merging marketplace changes, make sure every module release passes all checks below:
@@ -84,3 +89,13 @@ Run the same checks locally:
 ```bash
 node scripts/validate-marketplace-index.mjs
 ```
+
+## Maintainer: required status checks
+
+In GitHub **Settings → Branches**, make `Validate marketplace index / validate` a required
+status check so a broken `index.json` or `releases/*.zip` cannot reach `main`.
+
+## License
+
+[MIT](LICENSE)
+
