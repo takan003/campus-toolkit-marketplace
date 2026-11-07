@@ -1,3 +1,20 @@
 {
-  "keys": []
+  "keys": [
+    {
+      "author": "takan003",
+      "keyId": "sha256:1d20b7d26b962aaa7d7f0f45cd266e254f13098d54faef1e5022e22f9cc5fca4",
+      "publicKey": "MCowBQYDK2VwAyEA/bIHYBb7hUie/fguMoXJ2vltikMkN+CPIyVZ5UbCwHE=",
+      "status": "active",
+      "addedAt": "2026-11-07",
+      "note": "official modules (selfDirectedLearning, identityTaxInquiry)"
+    },
+    {
+      "author": "張家誠",
+      "keyId": "sha256:1d20b7d26b962aaa7d7f0f45cd266e254f13098d54faef1e5022e22f9cc5fca4",
+      "publicKey": "MCowBQYDK2VwAyEA/bIHYBb7hUie/fguMoXJ2vltikMkN+CPIyVZ5UbCwHE=",
+      "status": "active",
+      "addedAt": "2026-11-07",
+      "note": "official module examRegistration"
+    }
+  ]
 }

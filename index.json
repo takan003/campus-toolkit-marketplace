@@ -24,7 +24,9 @@
         "模組介紹改為分類條列（學生端、教職員、管理端、家長端）並精簡文字，市集卡片一眼可讀完整功能範圍",
         "市集更新說明改為條列呈現，與自主學習計畫模組一致"
       ],
-      "status": "official"
+      "status": "official",
+      "signature": "gui8jQdRkN2xDcXAmuTMdvAy10gDuUVIfWTEWcPI8yWu8Y9e1pXWk4T9KbzgOtcfblm6QzCyMgcoVmEB3KKDCQ==",
+      "publicKey": "MCowBQYDK2VwAyEA/bIHYBb7hUie/fguMoXJ2vltikMkN+CPIyVZ5UbCwHE="
     },
     {
       "id": "selfDirectedLearning",
@@ -47,7 +49,9 @@
         "學校設定改走主程式唯讀公開面（module-host-data／readSystemDoc），不再直接存取 settings 集合。",
         "文件匯出測試補上新的宿主公開面 mock。"
       ],
-      "status": "official"
+      "status": "official",
+      "signature": "aq+1/d5ByhC3vH1q/9eBrDt6b7fdObMEWIYAy5CNEiV7i3ndoIgiJgZ2YB0ZZygU7fmHhTNa8D2jUYeUSLfCAA==",
+      "publicKey": "MCowBQYDK2VwAyEA/bIHYBb7hUie/fguMoXJ2vltikMkN+CPIyVZ5UbCwHE="
     },
     {
       "id": "identityTaxInquiry",
@@ -73,7 +77,9 @@
         "每次送出確認均須重新同意個人資料授權，記錄版本與同意時間；草稿不需同意。",
         "修正實施說明編輯器提示語：聚焦即隱藏，避免中文組字時重疊；空白失焦後恢復，提示文字不攔截點擊。"
       ],
-      "status": "official"
+      "status": "official",
+      "signature": "S4uR0iXiSf5tnN2OkdzVWIeeanEkyFH5CPQDv2nQopmhkl8a6iZKoxyTUw9h6V6T3NmwKgg6KqInaWwxhmbaCg==",
+      "publicKey": "MCowBQYDK2VwAyEA/bIHYBb7hUie/fguMoXJ2vltikMkN+CPIyVZ5UbCwHE="
     }
   ]
 }
