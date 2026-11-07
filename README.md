@@ -39,6 +39,7 @@ Each `index.json` entry includes:
 - `id`
 - `name`
 - `description`
+- `status`（`official`／`reviewed`／`experimental`）
 - `version`
 - `latestVersion`
 - `minHostVersion`

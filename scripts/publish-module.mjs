@@ -95,6 +95,7 @@ function parseArgs(argv) {
     validate: true,
     category: null,
     tags: null,
+    status: null,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -104,10 +105,11 @@ function parseArgs(argv) {
     else if (arg === "--skip-validate" || arg === "--no-validate") options.validate = false;
     else if (arg === "--category") options.category = argv[++i] ?? null;
     else if (arg === "--tags") options.tags = argv[++i] ?? null;
+    else if (arg === "--status") options.status = argv[++i] ?? null;
     else if (arg === "--help" || arg === "-h") {
       console.log(
         [
-          "用法：npm run publish -- <模組 repo 路徑> [--push] [--skip-commit] [--skip-validate] [--category 類別] [--tags a,b]",
+          "用法：npm run publish -- <模組 repo 路徑> [--push] [--skip-commit] [--skip-validate] [--category 類別] [--tags a,b] [--status official|reviewed|experimental]",
           "",
           "自動完成：壓縮 release、複製 module.json、更新 index/site、產生 notes.txt、驗證。",
         ].join("\n")
@@ -206,6 +208,11 @@ const tags =
 
 if (tags.length === 0) fail("tags 不可為空");
 
+const status = options.status ?? existing?.status ?? "experimental";
+if (!["official", "reviewed", "experimental"].includes(status)) {
+  fail(`status 需為 official／reviewed／experimental，實得：${status}`);
+}
+
 const zipName = `${id}-${version}.zip`;
 const zipPath = path.join(ROOT, "releases", zipName);
 fs.mkdirSync(path.dirname(zipPath), { recursive: true });
@@ -226,6 +233,7 @@ const entry = {
   id,
   name,
   description,
+  status,
   version,
   latestVersion: version,
   minHostVersion,

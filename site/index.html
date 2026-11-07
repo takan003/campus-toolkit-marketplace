@@ -281,6 +281,38 @@
         font-weight: 700;
       }
 
+      .head-badges {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .status-official { background: var(--success-bg); color: var(--success-text); border-color: transparent; }
+      .status-reviewed { background: var(--primary-soft); color: var(--primary); border-color: transparent; }
+      .status-experimental { background: #fff4e5; color: #a35a00; border-color: #f0c98b; }
+
+      .status-warning {
+        margin: 10px 0 0;
+        padding: 8px 10px;
+        border: 1px solid #f0c98b;
+        border-radius: 10px;
+        background: #fff4e5;
+        color: #a35a00;
+        font-size: 0.78rem;
+      }
+
       .module-title {
         font-size: clamp(1.3rem, 2vw, 2rem);
         margin: 0;
@@ -469,8 +501,18 @@
         },
       };
 
+      const STATUS_LABELS = {
+        official: { label: '官方', className: 'status-official' },
+        reviewed: { label: '已審核社群', className: 'status-reviewed' },
+        experimental: { label: '實驗', className: 'status-experimental' },
+      };
+
       function toDisplayCategory(category) {
         return CATEGORY_LABELS[category] || '一般';
+      }
+
+      function toDisplayStatus(status) {
+        return STATUS_LABELS[status] || null;
       }
 
       function toDisplayTags(tags) {
@@ -534,12 +576,20 @@
 
           const displayName = toDisplayModuleName(module);
           const displayDescription = toDisplayModuleDescription(module);
+          const status = toDisplayStatus(module.status);
+          const statusBadge = status ? `<span class="status-badge ${status.className}">${status.label}</span>` : '';
+          const experimentalWarning = module.status === 'experimental'
+            ? '<p class="status-warning">實驗模組：未經審核，不建議在正式環境安裝。</p>'
+            : '';
 
           return `
             <article class="module-card">
               <div class="module-head">
                 <div class="module-icon">${escapeHtml((displayName || module.id || 'M').slice(0,1).toUpperCase())}</div>
-                <div class="module-version">版本 ${escapeHtml(module.version || '0.0.0')}</div>
+                <div class="head-badges">
+                  ${statusBadge}
+                  <div class="module-version">版本 ${escapeHtml(module.version || '0.0.0')}</div>
+                </div>
               </div>
 
               <h2 class="module-title">${escapeHtml(displayName)}</h2>
@@ -548,6 +598,8 @@
                 <span>📦 ${category}</span>
                 <span>🧩 需求版本 ${hostVersion}</span>
               </div>
+
+              ${experimentalWarning}
 
               <p class="description">${escapeHtml(displayDescription)}</p>
 

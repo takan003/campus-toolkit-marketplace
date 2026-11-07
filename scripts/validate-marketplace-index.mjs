@@ -9,6 +9,7 @@ const REQUIRED_ENTRY_FIELDS = [
   "id",
   "name",
   "description",
+  "status",
   "version",
   "latestVersion",
   "minHostVersion",
@@ -69,6 +70,9 @@ function assertEntryShape(entry, indexName) {
     ) {
       fail(`${indexName} 欄位 modules[].releaseNotes 必須為 1–3 點非空字串陣列`);
     }
+  }
+  if (!["official", "reviewed", "experimental"].includes(entry.status)) {
+    fail(`${indexName} modules[].status 需為 official／reviewed／experimental`);
   }
   assertSemver(entry.version, `${indexName} modules[].version`);
   assertSemver(entry.latestVersion, `${indexName} modules[].latestVersion`);
