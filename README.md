@@ -56,6 +56,27 @@ Each `index.json` entry includes:
 - `tags`
 - `signature`／`publicKey`（`reviewed` 必填；ed25519 簽 zip sha256）
 
+## Author keys (`keys.json`)
+
+Each key record contains `author`, `keyId` (auto-computed from the public key),
+`publicKey` (base64 ed25519 SPKI), `status` (`active`／`revoked`), and optional
+`addedAt`, `note`, `repos`.
+
+```bash
+npm run keys:list          # list keys and status
+npm run keys:validate      # validate keys.json (also runs in CI)
+npm run keys:add -- --author <name> --public-key <base64> --repos owner/repo
+npm run keys:revoke -- --key-id sha256:... --author <name>
+npm run keys:rotate -- --author <name> --public-key <new-base64>
+npm run keys:affected -- --key-id sha256:...
+npm run keys:export-trust  # output MODULE_MARKET_TRUSTED_KEYS JSON for a host
+```
+
+Rotation uses an overlap window: add the new key first, re-sign and republish all
+modules, then revoke the old key. Revoking a key makes every module signed with it
+fail validation until it is re-signed or removed. See
+[`docs/投稿與審核流程.md`](./docs/投稿與審核流程.md) for the full workflow.
+
 ## Security
 
 - download URL must be trusted

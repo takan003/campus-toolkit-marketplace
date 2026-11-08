@@ -3,6 +3,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
+import { loadKeysFile } from "./lib/trusted-keys.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const REQUIRED_ENTRY_FIELDS = [
@@ -162,17 +163,9 @@ function hasRequiredDirectory(entries, requiredDir) {
   });
 }
 
-/** C 的作者公鑰信任清單（keys.json） */
+/** C 的作者公鑰信任清單（keys.json；格式由 trusted-keys 驗證） */
 function loadTrustedKeys() {
-  const data = readJson("keys.json");
-  if (!Array.isArray(data.keys)) return [];
-  return data.keys.filter(
-    (item) =>
-      item &&
-      typeof item.author === "string" &&
-      typeof item.publicKey === "string" &&
-      typeof item.status === "string"
-  );
+  return loadKeysFile(path.join(ROOT, "keys.json")).keys;
 }
 
 /**
@@ -229,6 +222,12 @@ function verifyEntrySignature(entry, manifest, digest) {
 }
 
 async function validate() {
+  try {
+    loadKeysFile(path.join(ROOT, "keys.json"));
+  } catch (error) {
+    fail(`keys.json 無效：${error instanceof Error ? error.message : String(error)}`);
+  }
+
   const rootIndex = readJson("index.json");
   const siteIndex = readJson("site/index.json");
   for (const [name, index] of [

@@ -1,6 +1,6 @@
 {
   "name": "campus-toolkit-marketplace",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "校園工具箱功能模組市集：模組索引、發布包與市集網站。",
   "license": "MIT",
@@ -24,6 +24,15 @@
     "publish:dry": "node scripts/publish-module.mjs --skip-commit",
     "submit": "node scripts/publish-module.mjs --skip-commit --status experimental",
     "validate": "node scripts/validate-marketplace-index.mjs",
-    "check:docs": "node scripts/check-site-docs.cjs"
+    "check:docs": "node scripts/check-site-docs.cjs",
+    "keys": "node scripts/manage-keys.mjs",
+    "keys:validate": "node scripts/manage-keys.mjs validate",
+    "keys:list": "node scripts/manage-keys.mjs list",
+    "keys:add": "node scripts/manage-keys.mjs add",
+    "keys:revoke": "node scripts/manage-keys.mjs revoke",
+    "keys:rotate": "node scripts/manage-keys.mjs rotate",
+    "keys:affected": "node scripts/manage-keys.mjs affected",
+    "keys:export-trust": "node scripts/manage-keys.mjs export-trust",
+    "test:keys": "node scripts/test-trusted-keys.mjs"
   }
 }

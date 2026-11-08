@@ -7,6 +7,9 @@ on:
       - "site/index.json"
       - "modules/**"
       - "releases/**"
+      - "keys.json"
+      - "scripts/manage-keys.mjs"
+      - "scripts/lib/trusted-keys.mjs"
       - "scripts/validate-marketplace-index.mjs"
       - ".github/workflows/validate-marketplace.yml"
   push:
@@ -16,6 +19,9 @@ on:
       - "site/index.json"
       - "modules/**"
       - "releases/**"
+      - "keys.json"
+      - "scripts/manage-keys.mjs"
+      - "scripts/lib/trusted-keys.mjs"
       - "scripts/validate-marketplace-index.mjs"
 
 jobs:
@@ -29,6 +35,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Validate author keys
+        run: node scripts/manage-keys.mjs validate
+
+      - name: Trusted key tests
+        run: node scripts/test-trusted-keys.mjs
 
       - name: Fork PRs may only submit experimental
         if: github.event_name == 'pull_request'
