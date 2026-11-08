@@ -1,0 +1,30 @@
+name: 市集問題回報
+description: 回報 index、checksum、簽章、下載或 CI 問題
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        請勿在此回報安全漏洞；請依 SECURITY.md 使用 GitHub 私人安全回報。
+        模組程式碼本身的問題，請向該模組作者或主程式 repo 回報。
+  - type: input
+    id: module-id
+    attributes:
+      label: 模組代碼（若適用）
+      placeholder: "examRegistration"
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 發生什麼事
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 重現方式
+      placeholder: 指令、PR 連結或 index 片段（請移除敏感資料）
+    validations:
+      required: true
