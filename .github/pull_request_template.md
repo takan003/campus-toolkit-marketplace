@@ -1,5 +1,8 @@
 ## 模組投稿
 
+> 外部 PR 只能送 `experimental`；維護者審核後才會改 `reviewed`／`official`。
+> 模組作者自己 repo 的 PR 由作者自行管理，不在本 PR 處理。
+
 - 模組代碼（value）：
 - 版本（author.version）：
 - 模組原始碼 repo／tag：

@@ -12,6 +12,13 @@ It provides:
 
 The host app reads the marketplace index and installs modules from the listed download URLs.
 
+## Governance
+
+- The host app (`campus-toolkit`) is **closed maintenance**: only the trusted team can open/merge PRs. Everyone else forks the host and syncs upstream.
+- This marketplace uses a **PR review model**: external authors may submit a fork PR, but it must stay `experimental` until a maintainer reviews it and promotes it to `reviewed`／`official`.
+- A module author's own repository follows the author's own PR/review policy; that is outside this marketplace's governance.
+- Modules placed directly into a fork's `src/modules` are local modules and are not governed by this marketplace.
+
 ## Planning docs
 
 - [模組開發與發布指南（精簡版）](./模組開發與發布指南.md) — module developers start here; full guide: `takan003/campus-toolkit` → `docs/選用功能模組開發者指南.md`
