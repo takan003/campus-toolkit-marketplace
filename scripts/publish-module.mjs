@@ -1,8 +1,14 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import {
+  assertNoSensitiveFiles,
+  assertRequiredModulePaths,
+  verifyZipArchive,
+} from "./lib/release-check.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const MAX_ZIP_BYTES = 500 * 1024;
@@ -52,6 +58,31 @@ function git(args, options = {}) {
   return run("git", args, options);
 }
 
+/** 找宿主 module-check（優先用 A，其次 SDK）；找不到就要求 --skip-check */
+function resolveModuleChecker() {
+  const candidates = [
+    process.env.MODULE_CHECK_SCRIPT,
+    path.resolve(ROOT, "..", "campus-toolkit", "scripts", "module-check.mjs"),
+    path.resolve(ROOT, "..", "module-sdk", "bin", "module-check.mjs"),
+  ].filter(Boolean);
+  return candidates.find((candidate) => fs.existsSync(candidate)) ?? null;
+}
+
+function runModuleCheck(modulePath, enabled) {
+  if (!enabled) {
+    console.warn("[publish] 已跳過 module-check（--skip-check）——不建議用於正式上架。");
+    return;
+  }
+  const checker = resolveModuleChecker();
+  if (!checker) {
+    fail(
+      "找不到 module-check（請設定 MODULE_CHECK_SCRIPT，或把 campus-toolkit／module-sdk 放在 C 的上一層）；確定要跳過請加 --skip-check"
+    );
+  }
+  console.log(`[publish] 執行 module-check：${checker}`);
+  run(process.execPath, [checker, modulePath], { stdio: "inherit" });
+}
+
 function quotePowerShell(value) {
   return `'${value.replace(/'/g, "''")}'`;
 }
@@ -97,6 +128,8 @@ function parseArgs(argv) {
     tags: null,
     status: null,
     signKey: null,
+    dryRun: false,
+    skipCheck: false,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -108,12 +141,16 @@ function parseArgs(argv) {
     else if (arg === "--tags") options.tags = argv[++i] ?? null;
     else if (arg === "--status") options.status = argv[++i] ?? null;
     else if (arg === "--sign-key") options.signKey = argv[++i] ?? null;
+    else if (arg === "--dry-run") options.dryRun = true;
+    else if (arg === "--skip-check" || arg === "--no-check") options.skipCheck = true;
     else if (arg === "--help" || arg === "-h") {
       console.log(
         [
-          "用法：npm run publish -- <模組 repo 路徑> [--push] [--skip-commit] [--skip-validate] [--category 類別] [--tags a,b] [--status official|reviewed|experimental] [--sign-key <ed25519私鑰檔>]",
+          "用法：npm run publish -- <模組 repo 路徑> [--push] [--skip-commit] [--skip-validate] [--skip-check] [--dry-run] [--category 類別] [--tags a,b] [--status official|reviewed|experimental] [--sign-key <ed25519私鑰檔>]",
           "",
-          "自動完成：壓縮 release、複製 module.json、更新 index/site、產生 notes.txt、驗證。",
+          "自動完成：module-check、必要目錄／敏感檔檢查、壓縮 release、zip 內容比對、複製 module.json、更新 index/site、產生 notes.txt、驗證。",
+          "  --dry-run       只做檢查與暫存 zip，不寫入 index／release／commit",
+          "  --skip-check    跳過 module-check（不建議）",
         ].join("\n")
       );
       process.exit(0);
@@ -182,6 +219,10 @@ if (releaseNotes.length > MAX_NOTES) {
   releaseNotes = releaseNotes.slice(0, MAX_NOTES);
 }
 
+assertRequiredModulePaths(moduleDir);
+assertNoSensitiveFiles(moduleDir);
+runModuleCheck(moduleDir, !options.skipCheck);
+
 const indexFiles = [path.join(ROOT, "index.json"), path.join(ROOT, "site", "index.json")];
 const indexes = indexFiles.map((filePath) => {
   if (!fs.existsSync(filePath)) fail(`缺少 ${path.relative(ROOT, filePath)}`);
@@ -216,14 +257,18 @@ if (!["official", "reviewed", "experimental"].includes(status)) {
 }
 
 const zipName = `${id}-${version}.zip`;
-const zipPath = path.join(ROOT, "releases", zipName);
-fs.mkdirSync(path.dirname(zipPath), { recursive: true });
+const zipDir = options.dryRun
+  ? fs.mkdtempSync(path.join(os.tmpdir(), "campus-market-publish-"))
+  : path.join(ROOT, "releases");
+fs.mkdirSync(zipDir, { recursive: true });
+const zipPath = path.join(zipDir, zipName);
 createZip(moduleDir, zipPath);
 
 const zipSize = fs.statSync(zipPath).size;
 if (zipSize > MAX_ZIP_BYTES) {
   fail(`release 壓縮檔 ${(zipSize / 1024).toFixed(1)}KB 超過 500KB 上限`);
 }
+const zipCheck = verifyZipArchive(zipPath, moduleDir);
 const checksumSha256 = sha256File(zipPath);
 
 let signature;
@@ -234,8 +279,24 @@ if (options.signKey) {
   signature = crypto.sign(null, Buffer.from(checksumSha256, "hex"), privateKey).toString("base64");
   publicKey = crypto.createPublicKey(privateKey).export({ type: "spki", format: "der" }).toString("base64");
 }
-if (status === "reviewed" && !signature && !existing?.signature) {
-  fail("status=reviewed 需 --sign-key（或 index 已有 signature/publicKey）");
+
+const checksumChanged = !existing || existing.checksumSha256 !== checksumSha256;
+const hasValidExistingSignature = !checksumChanged && Boolean(existing?.signature && existing?.publicKey);
+const signedStatus = status === "official" || status === "reviewed";
+if (signedStatus && !signature && !hasValidExistingSignature) {
+  fail(
+    checksumChanged
+      ? "status=official／reviewed 且套件內容已變更，必須用 --sign-key 重新簽章"
+      : "status=official／reviewed 需要 --sign-key（目前沒有可沿用的簽章）"
+  );
+}
+
+if (options.dryRun) {
+  fs.rmSync(zipDir, { recursive: true, force: true });
+  console.log(
+    `[publish] dry-run：${id} v${version} 檢查通過（${(zipSize / 1024).toFixed(1)}KB、${zipCheck.files} 個檔案），未寫入 index／release／commit。`
+  );
+  process.exit(0);
 }
 
 const manifestDest = path.join(ROOT, "modules", id, "module.json");
@@ -259,6 +320,11 @@ const entry = {
   tags,
   releaseNotes,
 };
+if (checksumChanged && !signature) {
+  // 內容已變更但沒有重新簽章：不能沿用舊簽章（會對不上新 zip）
+  delete entry.signature;
+  delete entry.publicKey;
+}
 
 const now = new Date().toISOString();
 for (const index of indexes) {

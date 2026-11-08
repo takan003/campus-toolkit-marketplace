@@ -42,6 +42,9 @@ jobs:
       - name: Trusted key tests
         run: node scripts/test-trusted-keys.mjs
 
+      - name: Release check tests
+        run: node scripts/test-release-check.mjs
+
       - name: Fork PRs may only submit experimental
         if: github.event_name == 'pull_request'
         env:

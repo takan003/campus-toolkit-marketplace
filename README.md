@@ -98,14 +98,31 @@ Do not open a public issue with reproducible attack details.
 
 ## Publishing checklist (required)
 
-Before merging marketplace changes, make sure every module release passes all checks below:
+Before merging marketplace changes, make sure every module release passes all checks below.
 
-1. `releases/<moduleId>.zip` contains a complete module package (`module.json`, `admin/`, `student/`, `api/`, `components/`, `lib/`, `types/`).
+Run a full preflight without writing anything:
+
+```bash
+npm run publish:check -- <module path> [--sign-key <ed25519 key>]
+# or: node scripts/publish-module.mjs <module path> --dry-run --sign-key <key>
+```
+
+The preflight now enforces:
+
+1. `module:check` (host authoritative scanner; fails if unavailable unless `--skip-check`)
+2. required paths: `module.json`, `admin/`, `student/`, `api/`, `components/`, `lib/`, `types/`
+3. no sensitive files in the package (`.env*` except example/sample/template, `*.key`, `*.pem`, `.module-signing/`, etc.)
+4. zip content verification: required paths exist, forbidden dirs (`node_modules`, `.git`, `.next`, `dist`, `build`) absent, and `module.json` inside the zip matches the source
+5. 500KB zip limit and checksum calculation
+
+Then confirm:
+
+1. `releases/<moduleId>.zip` contains a complete module package.
 2. `index.json` and `site/index.json` use identical `modules[]` records.
 3. `version`, `latestVersion`, `minHostVersion` are valid semver (`x.y.z`).
 4. `checksumSha256` is lowercase 64-hex and matches the actual zip digest.
 5. `modules/<moduleId>/module.json` stays consistent with `index.json` (`value`, `author.version`, `minHostVersion`).
-6. If `status=reviewed`, `signature` and `publicKey` are present, the key is active in `keys.json`, and the signature verifies the zip digest.
+6. If `status=official` or `reviewed`, `signature` and `publicKey` are present, the key is active in `keys.json`, and the signature verifies the zip digest. If the zip content changed, `--sign-key` is required (old signatures cannot be reused).
 
 Validation is enforced by CI workflow:
 
@@ -116,6 +133,8 @@ Run the same checks locally:
 
 ```bash
 node scripts/validate-marketplace-index.mjs
+node scripts/test-trusted-keys.mjs
+node scripts/test-release-check.mjs
 ```
 
 ## Maintainer: required status checks
