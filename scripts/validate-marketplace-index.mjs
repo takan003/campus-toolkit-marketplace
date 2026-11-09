@@ -87,46 +87,49 @@ function sha256File(filePath) {
   return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
 }
 
+function assertSafeZipEntries(entries) {
+  for (const entry of entries) {
+    const normalized = String(entry).replace(/\\/g, "/");
+    if (!normalized || normalized.startsWith("/") || /^[A-Za-z]:/.test(normalized)) {
+      fail(`ZIP 含非法絕對路徑：${entry}`);
+    }
+    if (normalized.split("/").filter(Boolean).some((segment) => segment === "..")) {
+      fail(`ZIP 含路徑穿越（zip slip）：${entry}`);
+    }
+  }
+}
+
 function listZipEntries(zipPath) {
-  // Node 無內建 zip reader，改呼叫 powershell 的 Expand-Archive 對 CI 與 Windows 都可用。
-  // 在 GitHub Actions ubuntu runner 會走 unzip 指令。
+  // Node 無內建 zip reader；Windows 用 .NET ZipFile 只列項目（不解壓），
+  // 避免惡意 zip 在驗證階段就寫出暫存目錄之外。
   if (process.platform === "win32") {
-    const tempDir = fs.mkdtempSync(path.join(ROOT, ".tmp-market-zip-"));
-    const command = `Expand-Archive -Path '${zipPath}' -DestinationPath '${tempDir}' -Force`;
+    const quoted = zipPath.replace(/'/g, "''");
+    const command = `Add-Type -AssemblyName System.IO.Compression.FileSystem; $z=[IO.Compression.ZipFile]::OpenRead('${quoted}'); $z.Entries | ForEach-Object { $_.FullName }; $z.Dispose()`;
     const result = spawnSync("powershell", ["-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", command], {
       encoding: "utf-8",
     });
     if (result.status !== 0) {
-      fs.rmSync(tempDir, { recursive: true, force: true });
-      fail(`ZIP 解壓失敗：${result.stderr || result.stdout}`);
+      fail(`ZIP 檢查失敗：${result.stderr || result.stdout}`);
     }
-    const entries = [];
-    const walk = (dir, base) => {
-      for (const name of fs.readdirSync(dir)) {
-        const full = path.join(dir, name);
-        const rel = path.relative(base, full).split(path.sep).join("/");
-        const stat = fs.statSync(full);
-        if (stat.isDirectory()) {
-          entries.push(`${rel}/`);
-          walk(full, base);
-        } else {
-          entries.push(rel);
-        }
-      }
-    };
-    walk(tempDir, tempDir);
-    fs.rmSync(tempDir, { recursive: true, force: true });
-    return entries.sort();
+    const entries = (result.stdout || "")
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .sort();
+    assertSafeZipEntries(entries);
+    return entries;
   }
   const result = spawnSync("unzip", ["-Z1", zipPath], { encoding: "utf-8" });
   if (result.status !== 0) {
     fail(`ZIP 檢查失敗：${result.stderr || result.stdout}`);
   }
-  return result.stdout
+  const entries = result.stdout
     .split("\n")
     .map((line) => line.trim())
     .filter(Boolean)
     .sort();
+  assertSafeZipEntries(entries);
+  return entries;
 }
 
 async function verifyDownloadUrlReachable(url) {
