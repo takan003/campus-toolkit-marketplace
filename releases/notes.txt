@@ -1,4 +1,3 @@
-identityTaxInquiry v0.1.32（2026-11-09）
+examRegistration v0.1.57（2026-11-09）
 
-- 資料存取改用主程式 scopedDb；名冊核心集合維持唯讀。
-- 既有 API、資料結構與使用者操作不變。
+- 匯出 CSV 時對 =、+、-、@ 開頭的儲存格加單引號，避免 Excel／Sheets 公式注入。

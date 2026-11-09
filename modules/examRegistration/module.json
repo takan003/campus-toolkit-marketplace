@@ -17,8 +17,8 @@
   "author": {
     "author": "張家誠",
     "authorUrl": "https://github.com/takan003",
-    "version": "0.1.56",
-    "releasedAt": "2026-11-09"
+    "version": "0.1.57",
+    "releasedAt": "2026-11-10"
   },
   "provides": { "student": true, "parent": true, "staff": true, "admin": true },
   "defaultRoleEnabled": { "parent": false },
@@ -65,6 +65,13 @@
   ],
   "hooks": ["announcements", "calendar"],
   "changelog": [
+    {
+      "version": "0.1.57",
+      "releasedAt": "2026-11-10",
+      "notes": [
+        "匯出 CSV 時對 =、+、-、@ 開頭的儲存格加單引號，避免 Excel／Sheets 公式注入。"
+      ]
+    },
     {
       "version": "0.1.56",
       "releasedAt": "2026-11-09",
