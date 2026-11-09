@@ -1,4 +1,4 @@
-selfDirectedLearning v0.0.148（2026-11-06）
+selfDirectedLearning v0.0.149（2026-11-09）
 
-- 學校設定改走主程式唯讀公開面（module-host-data／readSystemDoc），不再直接存取 settings 集合。
-- 文件匯出測試補上新的宿主公開面 mock。
+- 資料存取改用主程式 scopedDb；名冊核心集合改為唯讀，並補上 rosterStudents 宣告。
+- 既有 API、資料結構與使用者操作不變。
