@@ -184,6 +184,12 @@ const version =
     : "";
 const minHostVersion =
   typeof manifest.minHostVersion === "string" ? manifest.minHostVersion.trim() : "";
+const marketName =
+  typeof manifest.marketName === "string" ? manifest.marketName.trim() : "";
+
+if (marketName.length > 120) {
+  fail("module.json 的 marketName 不可超過 120 字");
+}
 
 if (!/^[A-Za-z][A-Za-z0-9]*$/.test(id)) {
   fail(`module.json 的 value 不合法：${id || "(空)"}`);
@@ -236,7 +242,7 @@ const existing =
   indexes[1].modules.find((entry) => entry && entry.id === id) ??
   null;
 
-const name = existing?.name ?? manifest.label ?? id;
+const name = marketName || existing?.name || manifest.label || id;
 const description = existing?.description ?? manifest.description ?? name;
 const repoUrl = existing?.repoUrl ?? manifest.repository ?? `${GITHUB_BASE}/${id}`;
 const category = options.category ?? existing?.category ?? "academics";
