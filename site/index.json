@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T02:35:40.036Z",
+  "generatedAt": "2026-11-11T02:35:58.029Z",
   "marketplaceVersion": "1.0.0",
   "modules": [
     {
@@ -55,12 +55,12 @@
       "id": "identityTaxInquiry",
       "name": "註冊身分與財稅查調",
       "description": "每學期註冊身分確認與必要時的財稅查調作業。\n\n【學生端】\n• 於學校開放期間確認本學期註冊身分別（一般生、原住民、低收入戶、中低收入戶、身心障礙等）。\n• 需要財稅查調的身分別，可填寫父／母姓名與身分證字號，供承辦辦理查調。\n• 可先存草稿，確認後在截止前仍可修改；截止後唯讀。\n\n【教職員】\n• 兼導師查看本班註冊身分確認進度與名冊。\n• 具財稅查調權限者可更新查調狀態（待查調／已查調／免查調）與備註。\n\n【管理端】\n• 設定學期開放起訖、身分別選項、需查調身分別、是否必填父母身分證字號與實施說明。\n• 查看全校確認進度與統計，匯出查調名冊（含父母身分證字號）。\n\n【家長端】\n• 家長可唯讀查看子女本學期的註冊身分確認結果（身分證字號遮蔽顯示）。",
-      "version": "0.1.32",
-      "latestVersion": "0.1.32",
+      "version": "0.1.33",
+      "latestVersion": "0.1.33",
       "minHostVersion": "0.558",
       "repoUrl": "https://github.com/takan003/identityTaxInquiry",
-      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/identityTaxInquiry-0.1.32.zip",
-      "checksumSha256": "ac96db45fb07c959f708590d17e3139307653712fa4ece88bde9d42c61b6aed8",
+      "downloadUrl": "https://raw.githubusercontent.com/takan003/campus-toolkit-marketplace/main/releases/identityTaxInquiry-0.1.33.zip",
+      "checksumSha256": "fa74b3dc69ffbdf9fb361dae0bf9f6d6531ef24f1e37ff36932cc8d1b1634703",
       "category": "academics",
       "tags": [
         "註冊身分",
@@ -71,11 +71,10 @@
         "身心障礙"
       ],
       "releaseNotes": [
-        "資料存取改用主程式 scopedDb；名冊核心集合維持唯讀。",
-        "既有 API、資料結構與使用者操作不變。"
+        "module.json 新增選填 marketName（市集卡片名稱可與功能入口 label 分開）；目前與 label 相同，市集顯示不變。"
       ],
       "status": "official",
-      "signature": "jaVQdx2iRt7ux1Ge88iZZtNnUnAsgHurz/f65NVGphPovrnm3TspLoWfAIEmG5rnTQAvwENCbK5gicbpjzAJAw==",
+      "signature": "stuhPZLAaHxdfsFkS4h9YkN7kz78v2WwbNprOe65n1fqBQh802Wprcj26MxxjCwYyhSPMQB9P1NojWzWew0yDg==",
       "publicKey": "MCowBQYDK2VwAyEA/bIHYBb7hUie/fguMoXJ2vltikMkN+CPIyVZ5UbCwHE="
     }
   ]
